@@ -2,15 +2,11 @@
 {
   currentUser: {
     id: 1,
-    username: "user1",
-    errors: []
+    username: "user1"
   },
-  notebooks: {
-    1: {
-      id: 1,
-      title: "Coding",
-      author_id: 1
-    }
+  forms: {
+    auth: { errors: [] },
+    new: { errors: [] }
   },
   notes: {
     1: {
@@ -24,8 +20,13 @@
           id: 1
           name: "tricky part"
         }
-      }
+      },
+      tag_ids: [1]
     }
+  },
+  currentNotebook: {
+    id: 1,
+    title: "Coding"
   }
 }
 ```
