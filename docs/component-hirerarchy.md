@@ -74,5 +74,5 @@
 | "/home/notebooks/:notebookId/notes/:noteId" | "NotebookIndexContainer" |
 | "/home/tags/:tagId/notes/:notedId" | "TagIndexContainer" |
 | "/new-note" | "NewNoteContainer" |
-| "/new-notebook" | "NewNotebook" |
-| "/new-tag" | "NewTag" |
+| "/new-notebook" | "NewNotebookContainer" |
+| "/new-tag" | "NewTagContainer" |

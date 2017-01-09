@@ -1,6 +1,6 @@
 # SafeNotes
 
-[Heroku](https://dashboard.heroku.com "SafeNotes")
+[Heroku](https://safenotes.herokuapp.com "SafeNotes")
 
 [Trello](https://trello.com/b/D7eB3HGy/safenotes "SafeNotes")
 
@@ -13,21 +13,21 @@ original Evernote. My main goal is to get my features work without bugs.
 
 ## Features
 
-- [ ] Hosting on [Heroku](https://dashboard.heroku.com "SafeNotes")
+- [x] Hosting on [Heroku](https://safenotes.herokuapp.com "SafeNotes")
 - [ ] Authentication
 - [ ] Notes
 - [ ] Tags
 - [ ] Notebooks
 - [ ] Rich-text editing
 - [ ] Auto Save
-- [ ] Production [README](./README.md)
+- [ ] Production [README](../README.md)
 
 
 ## Bonus Features
 
-- [ ] Infinite Scroll
-- [ ] Search by(note title, notebook name)
 - [ ] Multiple Sessions
+- [ ] Search by(note's title, notebook's name)
+- [ ] Infinite Scroll
 - [ ] Sharing Notes
 
 
@@ -35,27 +35,27 @@ original Evernote. My main goal is to get my features work without bugs.
 
 * [View Wireframes](./wireframes/)
 * [React Components](./component-hirerarchy.md)
-* [Rails API Components](./api-endpoints.md)
-* [DB Schema](./schema.md)
+* [Rails API Endpoints](./api-endpoints.md)
+* [Database Schema](./schema.md)
 * [State Shape](./sample-state.md)
 
 
 ## Development Timeline
 
-**Phase 1:** Backend setup and Front-End User Authentication
+#### Phase 1: Backend setup and Front-End User Authentication
 **Goal:** Rails app with front-end auth
 
-**Phase 2:** Note, API, components
+#### Phase 2: Note, API, components
 **Goal:** CRUD Note, belongs_to Notebook, has_many Tags
 
-**Phase 3:** Tag, API
+#### Phase 3: Tag, API
 **Goal:** belongs_to Note, search by tag name
 
-**Phase 4:** Notebook, API, components
+#### Phase 4: Notebook, API, components
 **Goal:** CRUD Notebook, has_many Notes
 
-**Phase 5:** Styling Notes
+#### Phase 5: Styling Notes
 **Goal:** Allow rich text editing
 
-**Phase 6:** Auto Save
+#### Phase 6: Auto Save
 **Goal:** Document autosave after each change
