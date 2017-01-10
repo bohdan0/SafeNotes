@@ -13,11 +13,8 @@
 ### NewNoteContainer
 - NewNote
 
-### NewNotebookContainer
-- NewNotebook
-
-### NewTagContainer
-- NewTag
+### NewFormContainer
+- NewForm
 
 ### HomeContainer
 - Sidebar
