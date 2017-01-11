@@ -7,6 +7,7 @@ class AuthForm extends React.Component {
     this.state = { username: '', password: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.guestLogin = this.guestLogin.bind(this);
   }
 
   update(field) {
@@ -24,6 +25,24 @@ class AuthForm extends React.Component {
       .fail(() => (
         this.setState({ username: '', password: '' })
       ));
+  }
+
+  renderGuestButton() {
+    if(this.props.formType !== 'signup') {
+      return (
+        <input type="submit"
+               value='Guest Login' 
+               onClick={this.guestLogin} />
+      );
+    }
+  }
+
+  guestLogin(e) {
+    e.preventDefault();
+    this.props.processForm({ username: 'Guest', password: 'password'})
+      .then(() => (
+          this.props.router.push('/home')
+        ));
   }
 
   render() {
@@ -54,6 +73,8 @@ class AuthForm extends React.Component {
 
           <input type="submit"
                  value={text} />
+
+          {this.renderGuestButton()}
         </form>
 
         <div className='switch-panel'>
