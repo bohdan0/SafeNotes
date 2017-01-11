@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { hashHistory } from 'react-router';
 
 class AuthForm extends React.Component {
   constructor(props) {
@@ -20,7 +19,7 @@ class AuthForm extends React.Component {
     e.preventDefault();
     this.props.processForm(this.state)
       .then(() => (
-        hashHistory.push('/home')
+        this.props.router.push('/home')
       ))
       .fail(() => (
         this.setState({ username: '', password: '' })
@@ -28,7 +27,7 @@ class AuthForm extends React.Component {
   }
 
   render() {
-    const text = this.props.formType === 'login' ? 'Sign In' : 'Create Account';
+    const text = this.props.formType === 'signup' ? 'Create Account' : 'Sign In';
     const firstWord = text === 'Sign In' ? 'Don\'t' : 'Already';
     const oppositeText = text === 'Sign In' ? 'Create Account' : 'Sign In';
     const oppositeForm = text === 'Sign In' ? 'signup' : 'login';
@@ -36,7 +35,7 @@ class AuthForm extends React.Component {
     return (
       <div className='auth-form'>
         <figure>
-          <img src="http://image.flaticon.com/icons/svg/235/235300.svg" alt="Logo" />
+          <img src="http://image.flaticon.com/icons/svg/235/235300.svg"              alt="Logo" />
         </figure>
 
         <h3>{text}</h3>
@@ -44,14 +43,14 @@ class AuthForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <input type="text" 
-                value={this.state.username}
-                placeholder='Username'
-                onChange={this.update('username')} />
+                 value={this.state.username}
+                 placeholder='Username'
+                 onChange={this.update('username')} />
 
           <input type="password" 
-                value={this.state.password}
-                placeholder='Password'
-                onChange={this.update('password')} />
+                 value={this.state.password}
+                 placeholder='Password'
+                 onChange={this.update('password')} />
 
           <input type="submit"
                  value={text} />
