@@ -7,14 +7,37 @@ import AuthFormContainer from './auth_form/auth_form_container';
 import HomeContainer from './home/home_container';
 
 const Root = ({ store }) => {
+
+  const _redirectIfLoggedIn = (nextState, replace) => {
+    const currentUser = store.getState().currentUser;
+
+    if (currentUser.username) {
+      replace('/home');
+    }
+  };
+
+  const _ensureLoggedIn = (nextState, replace) => {
+    const currentUser = store.getState().currentUser;
+
+    if (!currentUser.username) {
+      replace('/');
+    }
+  };
+
   return (
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
           <IndexRoute component={ AuthFormContainer }/>
-          <Route path='/signup' component={ AuthFormContainer } />
-          <Route path='/login' component={ AuthFormContainer } />
-          <Route path='/home' component={ HomeContainer } />
+          <Route path='/login' 
+                 component={ AuthFormContainer } 
+                 onEnter={_redirectIfLoggedIn} />
+          <Route path='/signup' 
+                 component={ AuthFormContainer } 
+                 onEnter={_redirectIfLoggedIn} />
+          <Route path='/home' 
+                 component={ HomeContainer } 
+                 onEnter={_ensureLoggedIn} />
         </Route>
       </Router>
     </Provider>
