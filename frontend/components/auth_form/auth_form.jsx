@@ -10,6 +10,12 @@ class AuthForm extends React.Component {
     this.guestLogin = this.guestLogin.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.location.pathname !== this.props.location.pathname) {
+      this.props.receiveAuthErrors(null);
+    }
+  }
+
   update(field) {
     return e => {
       this.setState({ [field]: e.target.value });
@@ -19,30 +25,41 @@ class AuthForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.processForm(this.state)
-      .then(() => (
-        this.props.router.push('/home')
-      ))
-      .fail(() => (
-        this.setState({ username: '', password: '' })
-      ));
+      .then(() => {
+        this.props.receiveAuthErrors(null);
+        this.props.router.push('/home');
+      })
+      .fail(errors => {
+        this.setState({ username: '', password: '' });
+      });
   }
 
   renderGuestButton() {
     if(this.props.formType !== 'signup') {
       return (
         <input type="submit"
-               value='Guest Login' 
+               value='Guest Login'
                onClick={this.guestLogin} />
       );
     }
+  }
+
+  renderErrors() {
+    return (
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={i}>{error}</li>
+        ))}
+      </ul>
+    );
   }
 
   guestLogin(e) {
     e.preventDefault();
     this.props.processForm({ username: 'Guest', password: 'password'})
       .then(() => (
-          this.props.router.push('/home')
-        ));
+        this.props.router.push('/home')
+      ));
   }
 
   render() {
@@ -59,14 +76,16 @@ class AuthForm extends React.Component {
 
         <h3>{text}</h3>
 
+        {this.renderErrors()}
+
         <form onSubmit={this.handleSubmit}>
 
-          <input type="text" 
+          <input type="text"
                  value={this.state.username}
                  placeholder='Username'
                  onChange={this.update('username')} />
 
-          <input type="password" 
+          <input type="password"
                  value={this.state.password}
                  placeholder='Password'
                  onChange={this.update('password')} />
