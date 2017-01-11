@@ -1,3 +1,87 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.auth-form {
+  background: #ffffff;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 150px;
+  width: 60%;
+  max-width: 500px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  figure img {
+    width: 100px;
+  }
+
+  h3 {
+    font-size: 24px;
+    margin: 20px;
+  }
+
+  form {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 50%;
+      height: 20px;
+      border-radius: 10px;
+      font-size: 24px;
+      border: 1px solid #cacaca;
+    }
+
+    input::-webkit-input-placeholder {
+      color: #9c9c9c;
+    }
+
+    input[type='submit'] {
+      border-width: 0;
+      height: 50px;
+      color: #ffffff;
+      background: #2dbe60;
+      border: 1px solid #1fae52;
+    }
+
+    input[type='submit']:hover {
+      background: #1fae52;
+    }
+
+    input[type='submit']:active {
+      background: #1A9446;
+    }
+
+    input:focus {
+      // outline-style: 
+      border-radius: 5px;
+    }
+
+  }
+
+  .switch-panel {
+    border-top: 3px solid black;
+    margin: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      font-size: 16px;
+    }
+
+    a {
+      margin-top: 10px;
+    }
+  }
+}
