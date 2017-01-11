@@ -4,11 +4,12 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.logout = this.logout.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  logout() {
-    this.props.logout()
+  handleClick(e) {
+    const activity = e.target.value;
+    this.props[activity].call()
       .then(() => this.props.router.push('/'));
   }
 
@@ -20,26 +21,34 @@ class Sidebar extends React.Component {
         <img src="http://image.flaticon.com/icons/svg/235/235300.svg"              
             alt="Logo" />
         
-        <button className='sidebar-btn'>New Note</button>
+        <button className='sidebar-btn'
+                value='new_note'
+                onClick={this.handleClick}>New Note</button>
       </div>
 
         <ul className='nav'>
           <li>
-            <button className='sidebar-btn notes'>Notes</button>
+            <button className='sidebar-btn notes'
+                    value='notes'
+                    onClick={this.handleClick}>Notes</button>
           </li>
 
           <li>
-            <button className='sidebar-btn notebooks'>Notebooks</button>
+            <button className='sidebar-btn notebooks'
+                    value='notebooks'
+                    onClick={this.handleClick}>Notebooks</button>
           </li>
 
           <li>
-            <button className='sidebar-btn tags'>Tags</button>
+            <button className='sidebar-btn tags'
+                    value='tags'
+                    onClick={this.handleClick}>Tags</button>
           </li>
         </ul>
 
-        <button type="button"
-                className='sidebar-btn logout'
-                onClick={this.logout}>Log Out</button>
+        <button className='sidebar-btn logout'
+                value='logout'
+                onClick={this.handleClick}>Log Out</button>
       </div>
     );
   }
