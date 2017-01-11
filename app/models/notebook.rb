@@ -1,5 +1,5 @@
 class Notebook < ApplicationRecord
-  validates :title, :author_id, presence: true
+  validates :title, :author, presence: true
 
   has_many :notes, dependent: :destroy
 
