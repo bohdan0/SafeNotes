@@ -6,4 +6,6 @@ class Note < ApplicationRecord
 
   belongs_to :notebook,
     class_name: :Notebook
+
+  has_many :tags
 end
