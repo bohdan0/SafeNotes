@@ -1,0 +1,54 @@
+.sidebar {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 110px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    width: 60px;
+    margin-top: 50px;
+  }
+
+  .nav {
+    margin: 0 auto;
+  }
+
+  .sidebar-btn {
+    text-align: center;
+    border: 1px solid black;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    margin-top: 50px;
+  }
+
+  .sidebar-btn:hover {
+    background: #1fae52;
+    cursor: pointer;
+  }
+
+  .sidebar-btn:active {
+    background: #1A9446;
+  }
+
+  .notes {
+    margin-top: 0;
+  }
+
+  .notebooks, .tags {
+    margin-top: 10px;
+  }
+
+  .logout {
+    margin-bottom: 50px;
+  }
+}
+
+

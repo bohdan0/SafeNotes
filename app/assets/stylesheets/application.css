@@ -14,6 +14,7 @@
  *= require_self
  */
 
-body {
-    background: #f3f3f3;
-}
+@import 'base/reset.scss';
+@import 'components/auth_form.scss';
+@import 'components/home.scss';
+@import 'components/sidebar.scss';
