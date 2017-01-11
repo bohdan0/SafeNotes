@@ -11,6 +11,7 @@ const Root = ({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
         <Route path='/' component={ App }>
+          <IndexRoute component={ AuthFormContainer }/>
           <Route path='/signup' component={ AuthFormContainer } />
           <Route path='/login' component={ AuthFormContainer } />
           <Route path='/home' component={ HomeContainer } />
