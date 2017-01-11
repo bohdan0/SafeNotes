@@ -1,0 +1,69 @@
+import React from 'react';
+import { Link } from 'react-router';
+import { hashHistory } from 'react-router';
+
+class AuthForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { username: '', password: '' };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  update(field) {
+    return e => {
+      this.setState({ [field]: e.target.value });
+    };
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.processForm(this.state)
+      .then(() => (
+        hashHistory.push('/home')
+      ))
+      .fail(() => (
+        this.setState({ username: '', password: '' })
+      ));
+  }
+
+  render() {
+    const text = this.props.formType === 'login' ? 'Sign In' : 'Create Account';
+    const firstWord = text === 'Sign In' ? 'Don\'t' : 'Already';
+    const oppositeText = text === 'Sign In' ? 'Create Account' : 'Sign In';
+    const oppositeForm = text === 'Sign In' ? 'signup' : 'login';
+
+    return (
+      <div className='auth-form'>
+        <figure>
+          <img src="http://image.flaticon.com/icons/svg/235/235300.svg" alt="Logo" />
+        </figure>
+
+        <h3>{text}</h3>
+
+        <form onSubmit={this.handleSubmit}>
+
+          <input type="text" 
+                value={this.state.username}
+                placeholder='Username'
+                onChange={this.update('username')} />
+
+          <input type="password" 
+                value={this.state.password}
+                placeholder='Password'
+                onChange={this.update('password')} />
+
+          <input type="submit"
+                 value={text} />
+        </form>
+
+        <div className='switch-panel'>
+          <p>{firstWord} have an account?</p>
+          <Link to={`/${oppositeForm}`}>{oppositeText}</Link>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default AuthForm;
