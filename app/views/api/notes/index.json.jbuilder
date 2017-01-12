@@ -1,0 +1,1 @@
+json.array! @notes, :id, :title, :body
