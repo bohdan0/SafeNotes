@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(username: 'Guest', password: 'password')
-
 user1 = User.create(username: 'user1', password: 'password')
 user2 = User.create(username: 'user2', password: 'password')
 user3 = User.create(username: 'user3', password: 'password')
@@ -28,3 +26,5 @@ Tag.create(name: 'ok', author_id: 3)
 Tagging.create(tag_id: 1, note_id: 1)
 Tagging.create(tag_id: 2, note_id: 2)
 Tagging.create(tag_id: 3, note_id: 3)
+
+User.create(username: 'Guest', password: 'password')
