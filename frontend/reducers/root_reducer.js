@@ -6,7 +6,7 @@ import NotesRecuder from './notes_reducer';
 import FormsReducer from './forms_reducer';
 
 const RootReducer = combineReducers({
-  currentNotebook: NotebooksReducer,
+  notebooks: NotebooksReducer,
   currentUser: SessionReducer,
   notes: NotesRecuder,
   forms: FormsReducer

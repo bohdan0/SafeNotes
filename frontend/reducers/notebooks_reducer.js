@@ -4,21 +4,21 @@ import { RECEIVE_ALL_NOTEBOOKS,
          RECEIVE_NOTEBOOK,
          REMOVE_NOTEBOOK } from '../actions/notebook_actions';
 
-const _nullNotebook = ({
-  id: null,
-  title: null
-});
+const _nullNotebooks = {};
 
-// const _nullNotebooks = {};
-
-const NotebooksRecuder = (state = _nullNotebook, action) => {
+const NotebooksRecuder = (state = _nullNotebooks, action) => {
   Object.freeze(state);
+  let newState = merge({}, state);
 
   switch(action.type) {
+    case RECEIVE_ALL_NOTEBOOKS:
+      return action.notebooks;
     case RECEIVE_NOTEBOOK:
-      return action.notebook;
+      newState[action.notebook.id] = action.notebook;
+      return newState;
     case REMOVE_NOTEBOOK:
-      return _nullNotebook;
+      delete newState[action.notebook.id];
+      return newState;
     default:
       return state;
   }
