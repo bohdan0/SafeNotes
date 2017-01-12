@@ -71,7 +71,8 @@ class AuthForm extends React.Component {
     return (
       <div className='auth-form'>
         <figure>
-          <img src="http://image.flaticon.com/icons/svg/235/235300.svg"              alt="Logo" />
+          <img src="http://image.flaticon.com/icons/svg/235/235300.svg"
+            alt="Logo" />
         </figure>
 
         <h3>{text}</h3>
@@ -81,11 +82,13 @@ class AuthForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
 
           <input type="text"
+                 className='auth-form-input'
                  value={this.state.username}
                  placeholder='Username'
                  onChange={this.update('username')} />
 
           <input type="password"
+                 className='auth-form-input'
                  value={this.state.password}
                  placeholder='Password'
                  onChange={this.update('password')} />
