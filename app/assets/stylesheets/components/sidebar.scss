@@ -4,24 +4,35 @@
   left: 0;
   right: 0;
   bottom: 0;
-  width: 110px;
+  width: 73px;
+  background: #f8f8f8;
+  border-right: 1px solid #ececec;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 
-  img {
-    width: 60px;
-    margin-top: 50px;
+  .sidebar-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 50px;
+      margin-top: 20px;
+    }
+
+    .sidebar-new {
+      text-align: center;;
+    }
   }
 
   .sidebar-btn {
     text-align: center;
-    border: 1px solid black;
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
     margin-top: 50px;
   }
 
@@ -33,20 +44,35 @@
   .sidebar-btn:active {
     background: #1A9446;
   }
-
-  .new {
-    // background: url('file://../images/plus-button.png');
+  
+  .nav {
+    .sidebar-btn {
+      border: none;
+    }
   }
 
-  .notes {
+  .side-notes {
     margin-top: 0;
   }
 
-  .notebooks, .tags {
+  .side-notebooks, .side-tags {
     margin-top: 10px;
   }
 
-  .logout {
-    margin-bottom: 50px;
+  .side-logout {
+    margin-bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
   }
 }
+
+// @media (max-width: 800px) {
+//   .sidebar {
+//     width: 75px;
+//   }
+
+//   .main {
+//     left: 75px;
+//   }
+// }
