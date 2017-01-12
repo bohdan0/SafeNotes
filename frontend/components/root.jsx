@@ -13,6 +13,7 @@ const Root = ({ store }) => {
     const currentUser = store.getState().currentUser;
 
     if (currentUser.username) {
+      console.log(currentUser.username);
       replace('/home');
     }
   };
@@ -31,15 +32,17 @@ const Root = ({ store }) => {
         <Route path='/' component={ App }>
           <IndexRoute component={ AuthFormContainer }
                       onEnter={ _redirectIfLoggedIn } />
-          <Route path='/login' 
+          <Route path='login' 
                  component={ AuthFormContainer } 
                  onEnter={ _redirectIfLoggedIn } />
-          <Route path='/signup' 
+          <Route path='signup' 
                  component={ AuthFormContainer } 
                  onEnter={ _redirectIfLoggedIn } />
-          <Route path='/home' 
+          <Route path='home' 
                  component={ HomeContainer } 
                  onEnter={ _ensureLoggedIn } >
+            <IndexRoute component={ NoteIndexContainer }
+                        onEnter={ _ensureLoggedIn } />
             <Route path='notes'
                    component={ NoteIndexContainer }
                    onEnter={ _ensureLoggedIn } />

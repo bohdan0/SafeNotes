@@ -13,22 +13,23 @@ class Sidebar extends React.Component {
 
   handleClick(e) {
     const activity = e.target.value;
+    console.log(activity);
     this.props[activity].call()
-      .then(() => this.props.router.push('/'));
+      .then(() => this.props.router.push(`/home/${activity}`));
   }
 
   render() {
 
     return (
       <div className='sidebar'>
-      <div className='sidebar-top'>
-        <img src="http://image.flaticon.com/icons/svg/235/235300.svg"
-             alt="Logo" />
+        <div className='sidebar-top'>
+          <img src="http://image.flaticon.com/icons/svg/235/235300.svg"
+              alt="Logo" />
 
-        <button className='sidebar-btn side-new'
-                value='new_note'
-                onClick={ this.handleClick }>New Note</button>
-      </div>
+          <button className='sidebar-btn side-new'
+                  value='new_note'
+                  onClick={ this.handleClick }>New Note</button>
+        </div>
 
         <ul className='nav'>
           <li>
@@ -52,7 +53,7 @@ class Sidebar extends React.Component {
 
         <button className='sidebar-btn side-logout'
                 value='logout'
-                onClick={ this.handleClick }>Log Out</button>
+                onClick={ this.props.logout }>Log Out</button>
       </div>
     );
   }
