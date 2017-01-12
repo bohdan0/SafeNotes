@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getNotebook(1);
+    // this.props.getNotebook(1);
   }
 
   handleClick(e) {
@@ -21,36 +21,36 @@ class Sidebar extends React.Component {
 
     return (
       <div className='sidebar'>
-      <div>
+      <div className='sidebar-top'>
         <img src="http://image.flaticon.com/icons/svg/235/235300.svg"
              alt="Logo" />
 
-        <button className='sidebar-btn new'
+        <button className='sidebar-btn side-new'
                 value='new_note'
                 onClick={ this.handleClick }>New Note</button>
       </div>
 
         <ul className='nav'>
           <li>
-            <button className='sidebar-btn notes'
+            <button className='sidebar-btn side-notes'
                     value='notes'
                     onClick={ this.handleClick }>Notes</button>
           </li>
 
           <li>
-            <button className='sidebar-btn notebooks'
+            <button className='sidebar-btn side-notebooks'
                     value='notebooks'
                     onClick={ this.handleClick }>Notebooks</button>
           </li>
 
           <li>
-            <button className='sidebar-btn tags'
+            <button className='sidebar-btn side-tags'
                     value='tags'
                     onClick={ this.handleClick }>Tags</button>
           </li>
         </ul>
 
-        <button className='sidebar-btn logout'
+        <button className='sidebar-btn side-logout'
                 value='logout'
                 onClick={ this.handleClick }>Log Out</button>
       </div>

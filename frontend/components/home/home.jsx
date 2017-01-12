@@ -13,9 +13,9 @@ class Home extends React.Component {
         <SidebarContainer router={ this.props.router }/>
 
         <main className='main'>
-          <h1>HOME</h1>
-          <p>Hello {this.props.currentUser.username}!</p>
+          { this.props.children }
         </main>
+
       </div>
     );
   }
