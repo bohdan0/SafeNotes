@@ -1,0 +1,1 @@
+json.(@notebook, :id, :title)

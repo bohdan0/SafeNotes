@@ -1,6 +1,14 @@
 class Api::NotesController < ApplicationController
   def index
-    @notes = Note.all.where('author_id = ?', current_user.id)
+    if params['notebook_id']
+      @notes = Note.all
+        .where('notebook_id = ?', params['notebook_id'])
+        .where('author_id = ?', current_user.id)
+    else
+      @notes = Note.all
+        .where('author_id = ?', current_user.id)
+    end
+
     render '/api/notes/index'
   end
 
@@ -37,6 +45,7 @@ class Api::NotesController < ApplicationController
   def destroy
     @note = Note.find(params[:id])
     @note.destroy
+
     render 'api/notes/show'
   end
 
