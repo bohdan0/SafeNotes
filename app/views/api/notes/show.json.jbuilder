@@ -1,1 +1,1 @@
-json.(@note, :id, :title, :body)
+json.partial! 'note', note: @note
