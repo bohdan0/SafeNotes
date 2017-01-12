@@ -1,11 +1,7 @@
-.auth-form {
-  background: #ffffff;
-  border: 1px solid #dedede;
-  border-radius: 3px;
-  padding: 30px;
-
-  width: 100%;
-  max-width: 500px;
+  .auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   position: absolute;
   top: 50%;
@@ -13,101 +9,165 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  figure img {
-    width: 100px;
-  }
-
-  h3 {
-    font-family: 'Varela Round';
-    font-size: 30px;
-    margin: 20px;
-  }
-
-  ul {
-    li {
-      text-align: center;
-      list-style: none;
-      color: red;
-      font-size: 18px;
-      margin: 10px;
-    }
-  }
-
-  form {
-
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    input {
-      padding: 10px;
-      margin: 20px 10px 20px 10px;
-      width: 85%;
-      height: 45px;
-      border-radius: 10px;
-      font-size: 30px;
-      border: 1px solid #cacaca;
-      font-family: 'Muli';
+  .auth-form-top {
+    img {
+      margin: 0 auto;
+      width: 80px;
     }
 
-    .auth-form-input {
-      font-size: 30px;
-      padding-left: 20px;
-      letter-spacing: 2px;
+    h3 {
       font-family: 'Varela Round';
-    }
-
-    input::-webkit-input-placeholder {
       font-size: 30px;
-      color: #9c9c9c;
+      margin: 0 auto;
+      margin: 20px;
     }
-
-    input[type='submit'] {
-      text-align: center;
-      border-width: 0;
-      height: 50px;
-      color: #ffffff;
-      background: #2dbe60;
-      border: 1px solid #1fae52;
-    }
-
-    input[type='submit']:hover {
-      background: #1fae52;
-      cursor: pointer;
-    }
-
-    input[type='submit']:active {
-      background: #1A9446;
-    }
-
-    input:focus {
-      outline-style: none;
-      box-shadow: 0 0 1.5px 1.5px #61C5FA;
-    }
-
   }
 
+  .auth-form-main {
+    background: #ffffff;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    padding: 30px;
+
+    ul {
+      li {
+        text-align: center;
+        list-style: none;
+        color: red;
+        font-size: 18px;
+        margin: 10px;
+      }
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        padding: 10px;
+        margin: 20px 10px 20px 10px;
+        width: 85%;
+        border-radius: 10px;
+        font-size: 30px;
+        border: 1px solid #cacaca;
+        font-family: 'Muli';
+      }
+
+      .auth-form-input {
+        padding-left: 20px;
+        letter-spacing: 2px;
+        font-family: 'Varela Round';
+      }
+
+      input::-webkit-input-placeholder {
+        font-size: 30px;
+        color: #9c9c9c;
+      }
+
+      input[type='submit'] {
+        text-align: center;
+        border-width: 0;
+        min-height: 30px;
+        color: #ffffff;
+        background: #2dbe60;
+        border: 1px solid #1fae52;
+      }
+
+      input[type='submit']:hover {
+        background: #1fae52;
+        cursor: pointer;
+      }
+
+      input[type='submit']:active {
+        background: #1A9446;
+      }
+
+      input:focus {
+        outline-style: none;
+        box-shadow: 0 0 1.5px 1.5px #61C5FA;
+      }
+    }
+  }
   .switch-panel {
-    border-top: 3px solid black;
     width: 100%;
-    margin-top: 20px;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 18px;
-
-    p {
-      font-size: 16px;
-    }
+    font-size: 16px;
 
     a {
       margin-top: 10px;
+    }
+  }
+}
+
+@media (max-width: 1600px) {
+  .auth-form {
+    height: 90%;
+    max-width: 500px;
+
+    .auth-form-top {
+      img {
+        width: 60px;
+      }
+
+      h3 {
+        font-size: 24px;
+        margin: 10px;
+      }
+    }
+
+    .auth-form-main {
+      padding: 20px;
+      width: 350px;
+
+      ul {
+        li {
+          font-size: 16px;
+          margin: 5px;
+        }
+      }
+
+      form {
+        input {
+          height: 24px;
+          border-radius: 8px;
+        }
+
+        input::-webkit-input-placeholder {
+          font-size: 26px;
+          color: #9c9c9c;
+        }
+
+        input[type='submit'] {
+          // height: 30px;
+          font-size: 24px;
+          color: #ffffff;
+          background: #2dbe60;
+          border: 1px solid #1fae52;
+        }
+      }
+
+      .switch-panel {
+        margin-top: 10px;
+        padding-top: 20px;
+        font-size: 16px;
+
+        a {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width: 800px) {
+  .auth-form {
+    .auth-form-main {
+        width: 300px;
     }
   }
 }

@@ -70,34 +70,37 @@ class AuthForm extends React.Component {
 
     return (
       <div className='auth-form'>
-        <figure>
+
+        <figure className='auth-form-top'>
           <img src="http://image.flaticon.com/icons/svg/235/235300.svg"
             alt="Logo" />
+
+          <h3>{text}</h3>
         </figure>
 
-        <h3>{text}</h3>
+        <div className='auth-form-main'>
+          {this.renderErrors()}
 
-        {this.renderErrors()}
+          <form onSubmit={this.handleSubmit}>
 
-        <form onSubmit={this.handleSubmit}>
+            <input type="text"
+                  className='auth-form-input'
+                  value={this.state.username}
+                  placeholder='Username'
+                  onChange={this.update('username')} />
 
-          <input type="text"
-                 className='auth-form-input'
-                 value={this.state.username}
-                 placeholder='Username'
-                 onChange={this.update('username')} />
+            <input type="password"
+                  className='auth-form-input'
+                  value={this.state.password}
+                  placeholder='Password'
+                  onChange={this.update('password')} />
 
-          <input type="password"
-                 className='auth-form-input'
-                 value={this.state.password}
-                 placeholder='Password'
-                 onChange={this.update('password')} />
+            <input type="submit"
+                  value={text} />
 
-          <input type="submit"
-                 value={text} />
-
-          {this.renderGuestButton()}
-        </form>
+            {this.renderGuestButton()}
+          </form>
+        </div>
 
         <div className='switch-panel'>
           <p>{firstWord} have an account?</p>
