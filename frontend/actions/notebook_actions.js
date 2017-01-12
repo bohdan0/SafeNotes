@@ -33,6 +33,12 @@ export const getNotebook = id => dispatch => (
     .fail(err => console.log(err))
 );
 
+export const createNotebook = data => dispatch => (
+  NotebookApiUtil.createNotebook(data)
+    .then(notebook => dispatch(receiveNotebook(notebook)))
+    .fail(err => console.log(err))
+);
+
 export const deleteNotebook = id => dispatch => (
   NotebookApiUtil.removeNotebook(id)
     .then(notebook => dispatch(removeNotebook(notebook)))
