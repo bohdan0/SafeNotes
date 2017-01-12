@@ -5,7 +5,7 @@
   padding: 30px;
 
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 
   position: absolute;
   top: 50%;
@@ -22,7 +22,8 @@
   }
 
   h3 {
-    font-size: 24px;
+    font-family: 'Varela Round';
+    font-size: 30px;
     margin: 20px;
   }
 
@@ -46,14 +47,23 @@
     input {
       padding: 10px;
       margin: 20px 10px 20px 10px;
-      width: 100%;
+      width: 85%;
       height: 45px;
       border-radius: 10px;
-      font-size: 24px;
+      font-size: 30px;
       border: 1px solid #cacaca;
+      font-family: 'Muli';
+    }
+
+    .auth-form-input {
+      font-size: 30px;
+      padding-left: 20px;
+      letter-spacing: 2px;
+      font-family: 'Varela Round';
     }
 
     input::-webkit-input-placeholder {
+      font-size: 30px;
       color: #9c9c9c;
     }
 
