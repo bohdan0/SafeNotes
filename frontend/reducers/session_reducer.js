@@ -4,7 +4,7 @@ import {
   RECEIVE_CURRENT_USER,
   LOGOUT } from '../actions/session_actions';
 
-const _nullUser = Object.freeze({
+const _nullUser = ({
   id: null,
   username: null
 });
