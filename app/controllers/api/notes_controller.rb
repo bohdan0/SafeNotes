@@ -4,9 +4,11 @@ class Api::NotesController < ApplicationController
       @notes = Note.all
         .where('notebook_id = ?', params[:notebook_id])
         .where('author_id = ?', current_user.id)
+        .includes(:tags)
     else
       @notes = Note.all
         .where('author_id = ?', current_user.id)
+        .includes(:tags)
     end
 
     render '/api/notes/index'

@@ -24,9 +24,11 @@
       tag_ids: [1]
     }
   },
-  currentNotebook: {
-    id: 1,
-    title: "Coding"
+  notebooks: {
+    1: {
+      id: 1,
+      title: "Coding"
+    }
   }
 }
 ```

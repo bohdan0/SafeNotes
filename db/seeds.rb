@@ -10,8 +10,8 @@ user1 = User.create(username: 'user1', password: 'password')
 user2 = User.create(username: 'user2', password: 'password')
 user3 = User.create(username: 'user3', password: 'password')
 
-3.times do |i|
-  Notebook.create(title: "notebook #{i + 1}", author_id: i + 1)
+(1..3).each do |i|
+  Notebook.create(title: "notebook #{i}", author_id: i)
 end
 
 (1..3).each do |idx|
@@ -28,3 +28,20 @@ Tagging.create(tag_id: 2, note_id: 2)
 Tagging.create(tag_id: 3, note_id: 3)
 
 User.create(username: 'Guest', password: 'password')
+
+(1..3).each do |i|
+  Notebook.create(title: "guest notebook #{i}", author_id: 4)
+end
+
+(1..3).each do |i|
+  Note.create(title: "guest note #{i}", body: "body", author_id: 4, notebook_id: i + 3)
+end
+
+Tag.create(name: 'guest cool', author_id: 4)
+Tag.create(name: 'guest ruby', author_id: 4)
+Tag.create(name: 'guest nope', author_id: 4)
+
+Tagging.create(tag_id: 5, note_id: 4)
+Tagging.create(tag_id: 6, note_id: 5)
+Tagging.create(tag_id: 7, note_id: 6)
+Tagging.create(tag_id: 7, note_id: 4)

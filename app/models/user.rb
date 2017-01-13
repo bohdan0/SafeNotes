@@ -5,7 +5,11 @@ class User < ApplicationRecord
 
   has_many :notes,
     foreign_key: :author_id
+
   has_many :notebooks,
+    foreign_key: :author_id
+
+  has_many :tags,
     foreign_key: :author_id
 
   after_initialize :ensure_session_token
