@@ -1,9 +1,12 @@
 import React from 'react';
 
-const NotebookIndexItem = ({ notebook }) => {
+const NotebookIndexItem = ({ notebook, amount }) => {
 
   return (
-    <h1>{notebook.title}</h1>
+    <div className='notebook-item'>
+      <h1>{ notebook.title }</h1>
+      <span>{ amount } notes</span>
+    </div>
   );
 };
 
