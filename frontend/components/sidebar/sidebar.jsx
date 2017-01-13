@@ -7,15 +7,9 @@ class Sidebar extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    // this.props.getNotebook(1);
-  }
-
   handleClick(e) {
-    const activity = e.target.value;
-    console.log(activity);
-    this.props[activity].call()
-      .then(() => this.props.router.push(`/home/${activity}`));
+    const nextPage = e.target.value;
+    this.props.router.push(`/home/${ nextPage }`);
   }
 
   render() {

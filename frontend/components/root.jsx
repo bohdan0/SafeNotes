@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import App from './app';
 import NoteIndexContainer from './notes/note_index_container';
+import TagIndexContainer from './tags/tag_index_container';
 import AuthFormContainer from './auth_form/auth_form_container';
 import HomeContainer from './home/home_container';
 
@@ -45,6 +46,9 @@ const Root = ({ store }) => {
                         onEnter={ _ensureLoggedIn } />
             <Route path='notes'
                    component={ NoteIndexContainer }
+                   onEnter={ _ensureLoggedIn } />
+            <Route path='tags'
+                   component={ TagIndexContainer }
                    onEnter={ _ensureLoggedIn } />
           </Route>
         </Route>
