@@ -1,53 +1,83 @@
 import React from 'react';
 
+import NotebookIndexContainer from '../notebooks/notebook_index_container';
+import TagIndexContainer from '../tags/tag_index_container';
+
 class Sidebar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { index: null };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
-    const nextPage = e.target.value;
-    this.props.router.push(`/home/${ nextPage }`);
+    const index = e.target.alt;
+    this.setState({ index });
+  }
+
+  renderIndex() {
+    const options = {
+      notebooks: <NotebookIndexContainer />,
+      tags: <TagIndexContainer />
+    };
+
+    if (this.state.index) {
+      return (
+        <div className='index'>
+          { options[this.state.index] }
+        </div>
+      );
+    }
   }
 
   render() {
 
     return (
-      <div className='sidebar'>
-        <div className='sidebar-top'>
-          <img src="http://image.flaticon.com/icons/svg/235/235300.svg"
-              alt="Logo" />
+      <div>
+        <div className='sidebar'>
+          <div className='sidebar-top'>
+            <img src="https://www.dropbox.com/s/tyo22ui1qf9pkia/logo.png?raw=1"
+                 alt="Logo" 
+                 className="logo"/>
 
-          <button className='sidebar-btn side-new'
-                  value='new_note'
-                  onClick={ this.handleClick }>New Note</button>
+            <img className='sidebar-btn side-new'
+                 value='new_note'
+                 onClick={ this.handleClick }
+                 src='https://www.dropbox.com/s/oknhbq0hezhgcv1/plus%20%281%29.svg?raw=1'/>
+          </div>
+
+          <ul className='nav'>
+            <li className='sidebar-btn'>
+              <img className='side-notes'
+                   onClick={ this.handleClick }
+                   src='https://www.dropbox.com/s/y8vier7wdrkhznz/document-with-text-lines-.png?raw=1'/>
+            </li>
+
+            <li className='sidebar-btn'>
+              <img className='side-notebooks'
+                   alt='notebooks'
+                   onClick={ this.handleClick } 
+                   src='https://www.dropbox.com/s/pm1zj16cibldspl/book-with-bookmarker.png?raw=1'/>
+            </li>
+
+            <li className='sidebar-btn'>
+              <img className='side-tags'
+                   src='https://www.dropbox.com/s/bik2y2v7tt9l88y/clothes-tag.png?raw=1'
+                   alt='tags'
+                   onClick={ this.handleClick }/>
+            </li>
+          </ul>
+
+          <img className='sidebar-btn side-logout'
+               onClick={ this.props.logout }
+               src="https://www.dropbox.com/s/skt2svisd0gdzf5/circular-power-on-button.png?raw=1" 
+               alt="Log Out"/>
         </div>
 
-        <ul className='nav'>
-          <li>
-            <button className='sidebar-btn side-notes'
-                    value='notes'
-                    onClick={ this.handleClick }>Notes</button>
-          </li>
-
-          <li>
-            <button className='sidebar-btn side-notebooks'
-                    value='notebooks'
-                    onClick={ this.handleClick }>Notebooks</button>
-          </li>
-
-          <li>
-            <button className='sidebar-btn side-tags'
-                    value='tags'
-                    onClick={ this.handleClick }>Tags</button>
-          </li>
-        </ul>
-
-        <button className='sidebar-btn side-logout'
-                value='logout'
-                onClick={ this.props.logout }>Log Out</button>
+        <div className='index-container'>
+          { this.renderIndex() }
+        </div>
       </div>
     );
   }

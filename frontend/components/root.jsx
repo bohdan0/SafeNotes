@@ -2,9 +2,6 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import NotebookIndexContainer from './notebooks/notebook_index_container';
-import NoteIndexContainer from './notes/note_index_container';
-import TagIndexContainer from './tags/tag_index_container';
 import AuthFormContainer from './auth_form/auth_form_container';
 import HomeContainer from './home/home_container';
 import App from './app';
@@ -46,20 +43,6 @@ const Root = ({ store }) => {
                  component={ HomeContainer } 
                  onEnter={ _ensureLoggedIn } >
 
-            <IndexRoute component={ NoteIndexContainer }
-                        onEnter={ _ensureLoggedIn } />
-
-            <Route path='notes'
-                   component={ NoteIndexContainer }
-                   onEnter={ _ensureLoggedIn } />
-
-            <Route path='notebooks'
-                   component={ NotebookIndexContainer }
-                   onEnter={ _ensureLoggedIn } />
-
-            <Route path='tags'
-                   component={ TagIndexContainer }
-                   onEnter={ _ensureLoggedIn } />
           </Route>
         </Route>
       </Router>

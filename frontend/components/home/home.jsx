@@ -1,5 +1,6 @@
 import React from 'react';
 
+import NoteIndexContainer from '../notes/note_index_container';
 import SidebarContainer from '../sidebar/sidebar_container';
 
 class Home extends React.Component {
@@ -12,9 +13,9 @@ class Home extends React.Component {
       <div className='home'>
         <SidebarContainer router={ this.props.router }/>
 
-        <main className='main'>
-          { this.props.children }
-        </main>
+        <div className='main'>
+          <NoteIndexContainer />
+        </div>
 
       </div>
     );
