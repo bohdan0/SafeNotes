@@ -6,6 +6,7 @@ const notesSelector = notes => {
     });
   });
 
+  // { tagId: amountOfNotes }
   return result;
 };
 
