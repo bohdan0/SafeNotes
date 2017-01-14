@@ -1,7 +1,7 @@
 class Api::NotebooksController < ApplicationController
   def index
     @notebooks = Notebook.all
-      .where('author_id = ?', current_user.id)
+      .where(author: current_user)
 
     render '/api/notebooks/index'
   end

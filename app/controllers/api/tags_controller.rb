@@ -1,7 +1,7 @@
 class Api::TagsController < ApplicationController
   def index
     @tags = Tag.all
-      .where('author_id = ?', current_user.id)
+      .where(author: current_user)
 
     render '/api/tags/index'
   end
@@ -16,7 +16,7 @@ class Api::TagsController < ApplicationController
   def destroy
     tag = Tag.find_by_name(params[:tag_name])
     taggings = Tagging.all
-      .where('note_id = ? AND tag_id = ?', params[:note_id], tag.id)
+      .where(note_id: params[:note_id], tag: tag)
 
     taggings.map(&:destroy)
   end
