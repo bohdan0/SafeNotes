@@ -1,10 +1,9 @@
 import * as NotebookApiUtil from '../util/notebooks_api_util';
 
+export const RECEIVE_NOTEBOOK_ERRORS = 'RECEIVE_NOTEBOOK_ERRORS';
 export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
 export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
-
-export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 
 export const receiveAllNotebooks = notebooks => ({
   type: RECEIVE_ALL_NOTEBOOKS,
@@ -19,6 +18,11 @@ export const receiveNotebook = notebook => ({
 export const removeNotebook = notebook => ({
   type: REMOVE_NOTEBOOK,
   notebook
+});
+
+export const receiveNotebookErrors = errors => ({
+  type: RECEIVE_NOTEBOOK_ERRORS,
+  errors
 });
 
 export const getAllNotebooks = () => dispatch => (
@@ -36,7 +40,7 @@ export const getNotebook = id => dispatch => (
 export const createNotebook = data => dispatch => (
   NotebookApiUtil.createNotebook(data)
     .then(notebook => dispatch(receiveNotebook(notebook)))
-    .fail(err => console.log(err))
+    .fail(err => dispatch(receiveNotebookErrors(err.responseJSON)))
 );
 
 export const deleteNotebook = id => dispatch => (
