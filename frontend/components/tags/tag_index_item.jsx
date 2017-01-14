@@ -1,9 +1,12 @@
 import React from 'react';
 
-const TagIndexItem = ({ tag }) => {
+const TagIndexItem = ({ tag, notes }) => {
 
   return (
-    <h1>{tag.name}</h1>
+    <div className='tag-item'>
+      <span>{ tag.name }</span>
+      <span>{ notes }</span>
+    </div>
   );
 };
 
