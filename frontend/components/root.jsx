@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 import AuthFormContainer from './auth_form/auth_form_container';
+import NewFormContainer from './new_form/new_form_container';
 import HomeContainer from './home/home_container';
 import App from './app';
 
@@ -41,9 +42,12 @@ const Root = ({ store }) => {
 
           <Route path='home' 
                  component={ HomeContainer } 
-                 onEnter={ _ensureLoggedIn } >
+                 onEnter={ _ensureLoggedIn } />
 
-          </Route>
+          <Route path='new'
+                 component={ NewFormContainer }
+                 onEnter={ _ensureLoggedIn } />
+
         </Route>
       </Router>
     </Provider>
