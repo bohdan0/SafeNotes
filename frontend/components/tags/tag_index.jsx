@@ -6,12 +6,18 @@ import TagHeader from './tag_header';
 class TagIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { tags: props.tags };
+  }
+
+  componentWillMount() {
+    this.props.fetchAllTags()
+      .then(tags => this.setState({ tags }));
   }
 
   render() {
-    const tags = this.props.tags;
+    const tags = this.state.tags;
     const notes = this.props.notes;
-    const tagLetters = Object.keys(tags);
+    const tagLetters = Object.keys(tags).sort();
 
     return (
       <div className='tag-index'>
@@ -25,10 +31,10 @@ class TagIndex extends React.Component {
               </h1>
 
               {tags[lttr].map(tag => (
-                <div key={ tag.id }
-                     className='tag-item-line'>
+                <div className='tag-item-line'
+                     key={ tag.id }>
                   <TagIndexItem tag={ tag }
-                                notes={ notes[tag.id] } />
+                                notes={ notes[tag.id] || 0 } />
                 </div>
               ))}
             </div>
