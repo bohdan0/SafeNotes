@@ -37,7 +37,7 @@ class Sidebar extends React.Component {
       <div>
         <div className='sidebar'>
           <div className='sidebar-top'>
-            <img src="https://www.dropbox.com/s/tyo22ui1qf9pkia/logo.png?raw=1"
+            <img src="https://www.dropbox.com/s/68ohcpzvzc3c26w/1484384030_Vector-icons_39.png?raw=1"
                  alt="Logo" 
                  className="logo"/>
 
