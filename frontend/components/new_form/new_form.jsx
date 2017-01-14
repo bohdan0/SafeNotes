@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 class NewForm extends React.Component {
   constructor(props) {
@@ -19,7 +19,8 @@ class NewForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state);
+    this.props.processForm(this.state)
+      .then(() => hashHistory.push('/'));
   }
 
   render() {
@@ -41,9 +42,9 @@ class NewForm extends React.Component {
           <div className='buttons'>
 
             <Link to='/'>
-              <input type="submit"
-                    onClick={ this.cancel }
-                    value='Cancel'/>
+              <input type="button"
+                     onClick={ this.cancel }
+                     value='Cancel'/>
             </Link>
 
             <input type="submit"

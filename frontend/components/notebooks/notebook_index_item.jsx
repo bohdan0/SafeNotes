@@ -5,7 +5,7 @@ const NotebookIndexItem = ({ notebook, amount }) => {
   return (
     <div className='notebook-item'>
       <h1>{ notebook.title }</h1>
-      <span>{ amount } notes</span>
+      <span>{ amount } { amount === 1 ? 'note' : 'notes' }</span>
     </div>
   );
 };

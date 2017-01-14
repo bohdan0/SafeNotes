@@ -13,9 +13,10 @@ class NotebookIndex extends React.Component {
   }
 
   render() {
+    const notesPerNotebook = this.props.notesPerNotebook;
     const notebooks = this.props.notebooks;
     const notebooksId = Object.keys(notebooks);
-
+ 
     return (
       <div className='notebook-index'>
         <NotebookHeader />
@@ -23,7 +24,7 @@ class NotebookIndex extends React.Component {
         <div className='notebooks'>
           {notebooksId.map(id => (
             <NotebookIndexItem notebook={ notebooks[id] } 
-                               amount={ notebooksId.length }
+                               amount={ notesPerNotebook[id] || 0 }
                                key={ id } />
           ))}
         </div>

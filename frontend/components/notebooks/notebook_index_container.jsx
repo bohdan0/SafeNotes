@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
 
-import NotebookIndex from './notebook_index';
+import notebooksSelector from '../../selectors/notebooks_selector';
 import { getAllNotebooks } from '../../actions/notebook_actions';
+import NotebookIndex from './notebook_index';
 
-const mapStateToProps = ({ notebooks }) => ({
+const mapStateToProps = ({ notebooks, notes }) => ({ 
+  notesPerNotebook: notebooksSelector(notes),
   notebooks
 });
 
