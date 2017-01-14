@@ -1,0 +1,74 @@
+.new-form {
+  font-family: 'Questrial';
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+
+  img {
+    width: 50px;
+  }
+
+  h1 {
+    color: #878787;
+    font-size: 20px;
+    font-family: 'Multi';
+    margin: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #878787;
+  }
+
+  input[type='text'] {
+    width: 300px;
+    height: 44px;
+    font-size: 34px;
+    font-weight: lighter;
+    text-align: center;
+    color: #383838;
+  }
+
+  input::-webkit-input-placeholder {
+    font-size: 34px;
+    color: #c4c4c4;
+  }
+
+  .buttons {
+    input {
+      border-radius: 5px;
+      height: 33px;
+      width: 190px;
+      margin: 50px 5px 20px 5px;
+      text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      
+      input {
+        border: 1px solid rgb(209,209,209);
+        background: #ececec;
+        color: #606060;
+      }
+
+      input:hover {
+        border: 1px solid #d1d1d1;
+        background: #d9d9d9;
+      }
+    }
+
+    input {
+      color: #ffffff;
+      background: #2dbe60;
+      border: 1px solid #1fae52;
+    }
+
+    input:hover {
+      background: #1fae52;
+    }
+  }
+}

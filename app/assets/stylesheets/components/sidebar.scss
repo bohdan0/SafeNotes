@@ -6,6 +6,7 @@
   bottom: 0;
   width: 73px;
   background: #f8f8f8;
+  z-index: 2;
   border-right: 1px solid #ececec;
 
   display: flex;
@@ -30,6 +31,12 @@
     height: 40px;
     border-radius: 20px;
     margin-top: 50px;
+  }
+
+  .nav {
+    .sidebar-btn {
+      margin-top: 30px;
+    }
   }
 
   .sidebar-btn:hover {
@@ -64,3 +71,8 @@
   left: 0;
   z-index: 1;
 }
+
+// .index-out {
+//   transition: transform .4s ease-in-out;
+//   transform: translateX(100%);
+// }
