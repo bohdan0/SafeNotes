@@ -1,4 +1,5 @@
-  .auth-form {
+.auth-form {
+  font-family: 'Questrial';
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,8 +17,8 @@
     }
 
     h3 {
-      font-family: 'Varela Round';
-      font-size: 30px;
+      font-size: 40px;
+      font-family: 'Multi';
       margin: 0 auto;
       margin: 20px;
     }
@@ -52,13 +53,11 @@
         border-radius: 10px;
         font-size: 25px;
         border: 1px solid #cacaca;
-        font-family: 'Muli';
       }
 
       .auth-form-input {
         padding-left: 20px;
         letter-spacing: 2px;
-        font-family: 'Varela Round';
       }
 
       input::-webkit-input-placeholder {
@@ -97,6 +96,7 @@
     flex-direction: column;
     align-items: center;
     font-size: 18px;
+    font-family: 'Multi';
 
     a {
       margin-top: 10px;
@@ -106,8 +106,11 @@
 
 @media (max-width: 1600px) {
   .auth-form {
-    height: 90%;
-    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 
     .auth-form-top {
       img {
@@ -122,7 +125,7 @@
 
     .auth-form-main {
       padding: 20px;
-      width: 350px;
+      max-width: 350px;
 
       ul {
         li {
@@ -165,8 +168,6 @@
 
 @media(max-width: 800px) {
   .auth-form {
-    .auth-form-main {
-        width: 300px;
-    }
+    width: 300px;
   }
 }
