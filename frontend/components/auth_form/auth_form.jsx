@@ -27,7 +27,7 @@ class AuthForm extends React.Component {
     this.props.processForm(this.state)
       .then(() => {
         this.props.receiveErrors(null);
-        this.props.router.push('/home');
+        this.props.router.push('/home/notebooks/all');
       })
       .fail(errors => {
         this.setState({ username: '', password: '' });
@@ -58,7 +58,7 @@ class AuthForm extends React.Component {
     e.preventDefault();
     this.props.processForm({ username: 'Guest', password: 'password'})
       .then(() => (
-        this.props.router.push('/home')
+        this.props.router.push('/home/notebooks/all')
       ));
   }
 
