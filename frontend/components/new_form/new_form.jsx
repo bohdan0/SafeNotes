@@ -9,34 +9,44 @@ class NewForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  update(type) {
+  update() {
     return e => {
       e.preventDefault();
-      const data = e.target.value;
-      this.setState({ [type]: data });
+      const title = e.target.value;
+      this.setState({ title });
     };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state)
+    const param = this.props.params.param;
+    this.props[param](this.state.title)
       .then(() => hashHistory.push('/'));
   }
 
   render() {
+    const word = this.props.params.param;
+    const placeholder = `Title your ${ word }`;
+
+    let imgUrl;
+    if (word === 'notebook') {
+      imgUrl = "https://www.dropbox.com/s/b8ziisfsi8l3nsg/1484446527_notebook-512.png?raw=1";
+    } else {
+      imgUrl = "https://www.dropbox.com/s/xa0nb2zcqcd5mt3/1484475589_finance-25.png?raw=1";
+    }
     
     return (
       <div>
         <form className='new-form'
               onSubmit={ this.handleSubmit }>
-          <img src="https://www.dropbox.com/s/b8ziisfsi8l3nsg/1484446527_notebook-512.png?raw=1" 
-               alt="create_notebook"/>
+          <img src={ imgUrl }
+               alt="new"/>
 
-          <h1>CREATE NOTEBOOK</h1>
+          <h1>CREATE { word.toUpperCase() }</h1>
 
           <input type="text"
-                 placeholder='Title your notebook'
-                 onChange={ this.update('title') }
+                 placeholder={ placeholder }
+                 onChange={ this.update() }
                  value={ this.state.title }/>
 
           <div className='buttons'>
@@ -48,7 +58,7 @@ class NewForm extends React.Component {
             </Link>
 
             <input type="submit"
-                   value='Create Notebook'/>
+                   value={ `Create ${ word }` }/>
           </div>
         </form>
       </div>

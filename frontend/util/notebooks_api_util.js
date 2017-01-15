@@ -12,11 +12,11 @@ export const fetchNotebook = id => (
   })
 );
 
-export const createNotebook = notebook => (
+export const createNotebook = title => (
   $.ajax({
     url: `/api/notebooks`,
     method: 'POST',
-    data: { notebook }
+    data: { notebook: { title } }
   })
 );
 

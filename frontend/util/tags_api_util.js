@@ -18,3 +18,11 @@ export const untagNote = (noteId, tagName) => (
     method: `DELETE`
   })
 );
+
+export const createTag = name => (
+  $.ajax({
+    url: `/api/tags`,
+    method: `POST`,
+    data: { tag: { name } }
+  })
+);

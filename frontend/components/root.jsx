@@ -44,7 +44,7 @@ const Root = ({ store }) => {
                  component={ HomeContainer } 
                  onEnter={ _ensureLoggedIn } />
 
-          <Route path='new'
+          <Route path='new/:param'
                  component={ NewFormContainer }
                  onEnter={ _ensureLoggedIn } />
 
