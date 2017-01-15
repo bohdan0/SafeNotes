@@ -4,7 +4,7 @@ import React from 'react';
 class TextArea extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { title: '', body: '' };
+    this.state = { id: null, title: '', body: '' };
   }
 
   update(type) {
@@ -17,11 +17,12 @@ class TextArea extends React.Component {
   }
 
   componentWillReceiveProps({ note }) {
-    const { title, body } = note;
-    this.setState({ title, body });
+    const { id, title, body } = note;
+    this.setState({ id, title, body });
   }
 
   render() {
+
     return (
       <div className='text-area'>
         <input className='title'
