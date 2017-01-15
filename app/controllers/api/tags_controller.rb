@@ -7,10 +7,11 @@ class Api::TagsController < ApplicationController
   end
 
   def create
-    tag = Tag.find_by_name(params[:tag_name])
-    tag = Tag.create(name: params[:tag_name], author_id: current_user.id) unless tag
-    note = Note.find(params[:note_id])
-    @tagging = Tagging.create(tag, note)
+    # tag = Tag.find_by_name(params[:tag_name])
+    # tag = Tag.create(name: params[:tag_name], author_id: current_user.id) unless tag
+    # note = Note.find(params[:note_id])
+    # @tagging = Tagging.create(tag, note)
+    a = Tag.create(name: tag_params[:name], author: current_user)
   end
 
   def destroy
@@ -24,6 +25,6 @@ class Api::TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name, :author_id)
+    params.require(:tag).permit(:name)
   end
 end
