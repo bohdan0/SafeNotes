@@ -12,7 +12,7 @@ export const fetchNote = id => (
   })
 );
 
-export const createNotebook = note => (
+export const createNote = note => (
   $.ajax({
     url: `/api/notes`,
     method: 'POST',
@@ -20,7 +20,7 @@ export const createNotebook = note => (
   })
 );
 
-export const updateNotebook = note => (
+export const updateNote = note => (
   $.ajax({
     url: `/api/notes/${note.id}`,
     method: 'PATCH',
@@ -28,7 +28,7 @@ export const updateNotebook = note => (
   })
 );
 
-export const removeNotebook = id => (
+export const removeNote = id => (
   $.ajax({
     url: `/api/notes/${ id }`,
     method: 'DELETE'
