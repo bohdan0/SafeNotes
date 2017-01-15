@@ -1,9 +1,11 @@
 import React from 'react';
 
-const NoteIndexItem = ({ note }) => {
+const NoteIndexItem = ({ note, handleClick }) => {
 
   return (
-    <div className='note-item'>
+    <div className='note-item'
+         onClick={ handleClick(note) }>
+
       <h1>{note.title}</h1>
       <span>LAST UPDATE</span>
       <p>{note.body}</p>

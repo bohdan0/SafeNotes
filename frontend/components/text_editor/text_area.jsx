@@ -4,7 +4,6 @@ import React from 'react';
 class TextArea extends React.Component {
   constructor(props) {
     super(props);
-    this.timeout = setTimeout(() => props.updateNote(this.state), 1000);
     this.state = {};
   }
 

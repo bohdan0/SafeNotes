@@ -7,6 +7,15 @@ import NoteHeader from './note_header';
 class NoteIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { currentNote: null };
+
+    this.updateCurrentNote = this.updateCurrentNote.bind(this);
+  }
+
+  updateCurrentNote(currentNote) {
+    return (e) => (
+      this.setState({ currentNote })
+    );
   }
 
   componentWillMount() {
@@ -25,12 +34,13 @@ class NoteIndex extends React.Component {
           <div className='notes'>
             {notesId.map(id => (
               <NoteIndexItem note={ notes[id] } 
-                            key={ id }/>
+                             key={ id }
+                             handleClick={ this.updateCurrentNote }/>
             ))}
           </div>
         </div>
 
-        <TextEditorContainer note={ notes[notesId[0]] } />
+        <TextEditorContainer note={ this.state.currentNote || notes[notesId[0]] } />
       </div>
     );
   }
