@@ -26,7 +26,7 @@ class AuthForm extends React.Component {
     e.preventDefault();
     this.props.processForm(this.state)
       .then(() => {
-        this.props.receiveAuthErrors(null);
+        this.props.receiveErrors(null);
         this.props.router.push('/home');
       })
       .fail(errors => {
@@ -39,7 +39,7 @@ class AuthForm extends React.Component {
       return (
         <input type="submit"
                value='Guest Login'
-               onClick={this.guestLogin} />
+               onClick={ this.guestLogin } />
       );
     }
   }

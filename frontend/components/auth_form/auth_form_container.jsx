@@ -2,11 +2,11 @@ import { connect } from 'react-redux';
 
 import { login,
          signup,
-         receiveAuthErrors } from '../../actions/session_actions';
+         receiveErrors } from '../../actions/session_actions';
 import AuthForm from './auth_form';
 
-const mapStateToProps = ({ forms }) => ({
-  errors: forms.auth.errors
+const mapStateToProps = ({ currentUser }) => ({
+  errors: currentUser.errors
 });
 
 const mapDispatchToProps = (dispatch, { location }) => {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, { location }) => {
 
   return {
     processForm: user => dispatch(processForm(user)),
-    receiveAuthErrors: errors => dispatch(receiveAuthErrors(errors)),
+    receiveErrors: errors => dispatch(receiveErrors(errors)),
     formType
   };
 };

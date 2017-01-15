@@ -1,7 +1,7 @@
 import * as NotebookApiUtil from '../util/notebooks_api_util';
 
-export const RECEIVE_NOTEBOOK_ERRORS = 'RECEIVE_NOTEBOOK_ERRORS';
 export const RECEIVE_ALL_NOTEBOOKS = 'RECEIVE_ALL_NOTEBOOKS';
+export const RECEIVE_ERRORS = 'RECEIVE_NOTEBOOK_ERRORS';
 export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 
@@ -21,7 +21,7 @@ export const removeNotebook = notebook => ({
 });
 
 export const receiveNotebookErrors = errors => ({
-  type: RECEIVE_NOTEBOOK_ERRORS,
+  type: RECEIVE_ERRORS,
   errors
 });
 
