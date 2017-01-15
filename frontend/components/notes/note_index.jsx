@@ -18,10 +18,6 @@ class NoteIndex extends React.Component {
     );
   }
 
-  componentWillMount() {
-    this.props.getAllNotes();
-  }
-
   render() {
     const notes = this.props.notes;
     const notesId = Object.keys(notes);
@@ -34,8 +30,8 @@ class NoteIndex extends React.Component {
           <div className='notes'>
             {notesId.map(id => (
               <NoteIndexItem note={ notes[id] } 
-                             key={ id }
-                             handleClick={ this.updateCurrentNote }/>
+                            key={ id }
+                            handleClick={ this.updateCurrentNote }/>
             ))}
           </div>
         </div>

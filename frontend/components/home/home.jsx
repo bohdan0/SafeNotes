@@ -8,10 +8,14 @@ class Home extends React.Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.getAllNotes();
+  }
+
   render() {
     return (
       <div className='home'>
-        <SidebarContainer router={ this.props.router }/>
+        <SidebarContainer />
 
         <div className='main'>
           <NoteIndexContainer />

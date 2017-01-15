@@ -5,8 +5,8 @@ import { logout } from '../../actions/session_actions';
 import { getAllNotebooks } from '../../actions/notebook_actions';
 import { getAllNotes } from '../../actions/note_actions';
 
-const mapStateToProps = (store, ownProps) => ({
-  router: ownProps.router
+const mapStateToProps = store => ({
+
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
