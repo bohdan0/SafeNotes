@@ -15,7 +15,7 @@ class Home extends React.Component {
   render() {
     return (
       <div className='home'>
-        <SidebarContainer />
+        <SidebarContainer router={ this.props.router }/>
 
         <div className='main'>
           <NoteIndexContainer />
