@@ -12,7 +12,7 @@ class AuthForm extends React.Component {
 
   componentWillReceiveProps(newProps) {
     if(newProps.location.pathname !== this.props.location.pathname) {
-      this.props.receiveAuthErrors(null);
+      this.props.receiveErrors(null);
     }
   }
 
