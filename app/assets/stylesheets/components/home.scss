@@ -1,11 +1,16 @@
 .main {
   background: #ffffff;
-  // background: lightgrey;
   position: absolute;
   height: 100%;
   left: 73px;
   top: 0;
   right: 0;
   bottom: 0;
+
+  .main-page {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+  }
 }
 

@@ -1,7 +1,8 @@
 .note-index {
   border-left: 1px solid #ececec;
   border-right: 1px solid #ececec;
-  width: 350px;
+  min-width: 350px;
+  max-width: 350px;
   height: 100%;
 
   display: flex;
@@ -34,6 +35,7 @@
   color: grey;
   padding: 20px;
   box-sizing: border-box;
+  overflow: hidden;
 
   h1 {
     font-weight: bold;
