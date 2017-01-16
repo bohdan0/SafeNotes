@@ -30,8 +30,7 @@ class NoteIndex extends React.Component {
     return (
       <div className='main-page'>
         <div className='note-index'>
-          <NoteHeader amount={ notesId.length } 
-                      word={ this.props.params }/>
+          <NoteHeader amount={ notesId.length } />
 
           <div className='notes'>
             {notesId.map(id => (

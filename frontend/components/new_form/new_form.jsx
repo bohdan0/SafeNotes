@@ -11,7 +11,6 @@ class NewForm extends React.Component {
 
   update() {
     return e => {
-      e.preventDefault();
       const title = e.target.value;
       this.setState({ title });
     };
@@ -27,42 +26,47 @@ class NewForm extends React.Component {
   render() {
     const word = this.props.params.param;
     const placeholder = `Title your ${ word }`;
+    const choices = ['notebook', 'tag'];
 
-    let imgUrl;
-    if (word === 'notebook') {
-      imgUrl = "https://www.dropbox.com/s/b8ziisfsi8l3nsg/1484446527_notebook-512.png?raw=1";
+    if (choices.includes(word)) {
+      let imgUrl;
+      if (word === 'notebook') {
+        imgUrl = "https://www.dropbox.com/s/b8ziisfsi8l3nsg/1484446527_notebook-512.png?raw=1";
+      } else if (word === 'tag') {
+        imgUrl = "https://www.dropbox.com/s/xa0nb2zcqcd5mt3/1484475589_finance-25.png?raw=1";
+      }
+      
+      return (
+        <div>
+          <form className='new-form'
+                onSubmit={ this.handleSubmit }>
+            <img src={ imgUrl }
+                alt="new"/>
+
+            <h1>CREATE { word.toUpperCase() }</h1>
+
+            <input type="text"
+                  placeholder={ placeholder }
+                  onChange={ this.update() }
+                  value={ this.state.title }/>
+
+            <div className='buttons'>
+
+              <Link to='/'>
+                <input type="button"
+                      onClick={ this.cancel }
+                      value='Cancel'/>
+              </Link>
+
+              <input type="submit"
+                    value={ `Create ${ word }` }/>
+            </div>
+          </form>
+        </div>
+      );
     } else {
-      imgUrl = "https://www.dropbox.com/s/xa0nb2zcqcd5mt3/1484475589_finance-25.png?raw=1";
+      return null;
     }
-    
-    return (
-      <div>
-        <form className='new-form'
-              onSubmit={ this.handleSubmit }>
-          <img src={ imgUrl }
-               alt="new"/>
-
-          <h1>CREATE { word.toUpperCase() }</h1>
-
-          <input type="text"
-                 placeholder={ placeholder }
-                 onChange={ this.update() }
-                 value={ this.state.title }/>
-
-          <div className='buttons'>
-
-            <Link to='/'>
-              <input type="button"
-                     onClick={ this.cancel }
-                     value='Cancel'/>
-            </Link>
-
-            <input type="submit"
-                   value={ `Create ${ word }` }/>
-          </div>
-        </form>
-      </div>
-    );
   }
 }
 

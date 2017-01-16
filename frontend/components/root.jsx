@@ -43,6 +43,10 @@ const Root = ({ store }) => {
                  component={ AuthFormContainer } 
                  onEnter={ _redirectIfLoggedIn } />
 
+          <Route path='new/:param'
+                 component={ NewFormContainer }
+                 onEnter={ _ensureLoggedIn } />
+
           <Route path='home' 
                  component={ HomeContainer } 
                  onEnter={ _ensureLoggedIn }>
@@ -69,13 +73,7 @@ const Root = ({ store }) => {
                      onEnter={ _ensureLoggedIn } />
 
             </Route>
-
           </Route>
-
-          <Route path='new/:param'
-                 component={ NewFormContainer }
-                 onEnter={ _ensureLoggedIn } />
-
         </Route>
       </Router>
     </Provider>
