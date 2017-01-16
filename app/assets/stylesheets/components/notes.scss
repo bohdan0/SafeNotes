@@ -36,6 +36,8 @@
   padding: 20px;
   box-sizing: border-box;
   overflow: hidden;
+  display: flex;
+  justify-content: space-between;
 
   h1 {
     font-weight: bold;
@@ -51,6 +53,15 @@
     margin: 5px 0; 
     height: 58px;
     overflow: hidden;
+  }
+
+  .trash-can {
+    width: 20px;
+    height: 20px;
+  }
+
+  .trash-can:hover {
+    transform: scale(1.3);
   }
 }
 

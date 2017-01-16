@@ -5,10 +5,15 @@ const NoteIndexItem = ({ note, handleClick }) => {
   return (
     <div className='note-item'
          onClick={ handleClick(note) }>
+      <div className='note-item-info'>
+        <h1>{note.title}</h1>
+        <span>LAST UPDATE</span>
+        <p>{note.body}</p>
+      </div>
 
-      <h1>{note.title}</h1>
-      <span>LAST UPDATE</span>
-      <p>{note.body}</p>
+      <img src="https://www.dropbox.com/s/gm863mao8z0rnww/big-garbage-bin.png?raw=1" 
+           alt="trash_can"
+           className='trash-can'/>
     </div>
   );
 };

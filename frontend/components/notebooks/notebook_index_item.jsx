@@ -10,8 +10,14 @@ const NotebookIndexItem = ({ notebook, amount }) => {
   return (
     <div className='notebook-item'
          onClick={ handleClick }>
-      <h1>{ notebook.title }</h1>
-      <span>{ amount } { amount === 1 ? 'note' : 'notes' }</span>
+      <div className='notebook-item-info'>
+        <h1>{ notebook.title }</h1>
+        <span>{ amount } { amount === 1 ? 'note' : 'notes' }</span>
+      </div>
+
+      <img src="https://www.dropbox.com/s/gm863mao8z0rnww/big-garbage-bin.png?raw=1" 
+           alt="trash_can"
+           className='trash-can'/>
     </div>
   );
 };

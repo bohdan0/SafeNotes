@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import React from 'react';
 
 class TextArea extends React.Component {

@@ -45,6 +45,8 @@
       color: grey;
       box-sizing: border-box;
       padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
 
       h1 {
         font-family: 'Raleway';
@@ -55,6 +57,15 @@
       span {
         font-family: 'Raleway';
         font-size: 14px;
+      }
+
+      .trash-can {
+        width: 20px;
+        height: 20px;
+      }
+
+      .trash-can:hover {
+        transform: scale(1.3);
       }
     }
 

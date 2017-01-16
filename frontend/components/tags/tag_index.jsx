@@ -32,9 +32,14 @@ class TagIndex extends React.Component {
 
               {tags[lttr].map(tag => (
                 <div className='tag-item-line'
-                     key={ tag.id }>
+                    key={ tag.id }>
                   <TagIndexItem tag={ tag }
                                 notes={ notes[tag.id] || 0 } />
+
+                <img src="https://www.dropbox.com/s/lmvyu800cif6lk8/1484607671_trash_bin.png?raw=1" 
+                      alt="trash_can"
+                      className='trash-can'/>
+
                 </div>
               ))}
             </div>
