@@ -19,7 +19,7 @@ class TagIndex extends React.Component {
     const notes = this.props.notes;
     const tagLetters = Object.keys(tags).sort();
 
-    return (
+    return this.props.children || (
       <div className='tag-index'>
         <TagHeader />
       

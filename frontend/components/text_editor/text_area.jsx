@@ -4,21 +4,23 @@ import React from 'react';
 class TextArea extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { id: null, title: '', body: '' };
+    this.state = props.note || { id: null, title: '', body: '' };
   }
 
   update(type) {
     return e => {
       this.setState({ [type]: e.target.value }, () => {
         clearTimeout(this.timeout);
-        this.timeout = setTimeout(() => this.props.updateNote(this.state), 1000);
+        this.timeout = setTimeout(() => this.props.updateNote(this.state), 500);
       });
     };
   }
 
   componentWillReceiveProps({ note }) {
-    const { id, title, body } = note;
-    this.setState({ id, title, body });
+    if (note) {
+      const { id, title, body } = note;
+      this.setState({ id, title, body });
+    }
   }
 
   render() {

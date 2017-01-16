@@ -14,19 +14,24 @@ class NoteIndex extends React.Component {
 
   updateCurrentNote(currentNote) {
     return (e) => {
-      hashHistory.push(`/home/notebooks/${ this.props.params.notebookId }/notes/${ currentNote.id }`);
+      if (this.props.params.notebookId) {
+        hashHistory.push(`/home/notebooks/${ this.props.params.notebookId }/notes/${ currentNote.id }`);
+      } else {
+        hashHistory.push(`/home/tags/${ this.props.params.tagId }/notes/${ currentNote.id }`);
+      }
     };
   }
 
   render() {
     const notes = this.props.notes;
     const notesId = Object.keys(notes);
-    const currentNote = this.props.notes[this.props.params.noteId] || notes[notesId[0]];
+    const currentNote = notes[this.props.params.noteId] || notes[notesId[0]];
 
     return (
       <div className='main-page'>
         <div className='note-index'>
-          <NoteHeader amount={ notesId.length } />
+          <NoteHeader amount={ notesId.length } 
+                      word={ this.props.params }/>
 
           <div className='notes'>
             {notesId.map(id => (
@@ -37,7 +42,7 @@ class NoteIndex extends React.Component {
           </div>
         </div>
 
-        <TextEditorContainer note={ currentNote || { id: null, title: '', body: '' } } />
+        <TextEditorContainer note={ currentNote } />
       </div>
     );
   }

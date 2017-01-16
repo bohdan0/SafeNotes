@@ -1,11 +1,20 @@
 import { connect } from 'react-redux';
 
-import { selectByNotebookId } from '../../selectors/note_selectors';
+import { selectByNotebookId,
+         selectByTagId } from '../../selectors/note_selectors';
 import NoteIndex from './note_index';
 
-const mapStateToProps = ({ notes }, { params }) => ({
-  notes: selectByNotebookId(notes, params.notebookId)
-});
+const mapStateToProps = ({ notes }, { params }) => {
+  if (params.notebookId) {
+    return ({
+      notes: selectByNotebookId(notes, params.notebookId)
+    });
+  } else {
+    return ({
+      notes: selectByTagId(notes, params.tagId)
+    });
+  }
+};
 
 const mapDispatchToProps = dispatch => ({
 

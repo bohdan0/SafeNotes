@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import AuthFormContainer from './auth_form/auth_form_container';
 import NotebookIndexContainer from './notebooks/notebook_index_container';
 import NoteIndexContainer from './notes/note_index_container';
+import TagIndexContainer from './tags/tag_index_container';
 import NewFormContainer from './new_form/new_form_container';
 import HomeContainer from './home/home_container';
 import App from './app';
@@ -51,6 +52,16 @@ const Root = ({ store }) => {
 
             <Route path='notebooks/:notebookId'
                    component={ NotebookIndexContainer }
+                   onEnter={ _ensureLoggedIn } >
+
+              <Route path='notes/:noteId'
+                     component={ NoteIndexContainer }
+                     onEnter={ _ensureLoggedIn } />
+
+            </Route>
+
+            <Route path='tags/:tagId'
+                   component={ TagIndexContainer }
                    onEnter={ _ensureLoggedIn } >
 
               <Route path='notes/:noteId'
