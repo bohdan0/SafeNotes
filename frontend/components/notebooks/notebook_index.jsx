@@ -25,7 +25,8 @@ class NotebookIndex extends React.Component {
           {notebooksId.map(id => (
             <NotebookIndexItem notebook={ notebooks[id] } 
                                amount={ notesPerNotebook[id] || 0 }
-                               key={ id } />
+                               key={ id } 
+                               deleteNotebook={ this.props.deleteNotebook }/>
           ))}
         </div>
       </div>

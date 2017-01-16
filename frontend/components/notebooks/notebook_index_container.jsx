@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 
 import notebooksSelector from '../../selectors/notebooks_selector';
-import { getAllNotebooks } from '../../actions/notebook_actions';
+import { getAllNotebooks,
+         deleteNotebook } from '../../actions/notebook_actions';
 import NotebookIndex from './notebook_index';
 
 const mapStateToProps = ({ notebooks, notes }, { params }) => { 
@@ -21,7 +23,8 @@ const mapStateToProps = ({ notebooks, notes }, { params }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getAllNotebooks: () => dispatch(getAllNotebooks())
+  getAllNotebooks: () => dispatch(getAllNotebooks()),
+  deleteNotebook: id => dispatch(deleteNotebook(id))
 });
 
 export default connect (mapStateToProps, mapDispatchToProps)(NotebookIndex);

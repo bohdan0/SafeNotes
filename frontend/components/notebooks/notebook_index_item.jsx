@@ -1,11 +1,15 @@
 import React from 'react';
 import { hashHistory } from 'react-router';
 
-const NotebookIndexItem = ({ notebook, amount }) => {
+const NotebookIndexItem = ({ notebook, amount, deleteNotebook }) => {
 
-  const handleClick = () => (
-    hashHistory.push(`/home/notebooks/${ notebook.id }/notes/all`)
-  );
+  const handleClick = (e) => {
+    if (e.target.alt) {
+      hashHistory.push(`/home/notebooks/all`);
+    } else {
+      hashHistory.push(`/home/notebooks/${ notebook.id }/notes/all`);
+    }
+  };
 
   return (
     <div className='notebook-item'
@@ -17,7 +21,8 @@ const NotebookIndexItem = ({ notebook, amount }) => {
 
       <img src="https://www.dropbox.com/s/gm863mao8z0rnww/big-garbage-bin.png?raw=1" 
            alt="trash_can"
-           className='trash-can'/>
+           className='trash-can'
+           onClick={ () => deleteNotebook(notebook.id) }/>
     </div>
   );
 };
