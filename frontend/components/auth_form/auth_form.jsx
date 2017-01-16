@@ -7,7 +7,6 @@ class AuthForm extends React.Component {
     this.state = { username: '', password: '' };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.guestLogin = this.guestLogin.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
@@ -39,7 +38,7 @@ class AuthForm extends React.Component {
       return (
         <input type="submit"
                value='Guest Login'
-               onClick={ this.guestLogin } />
+               onClick={ () => this.setState({ username: 'Guest', password: 'password'}) } />
       );
     }
   }
@@ -48,18 +47,12 @@ class AuthForm extends React.Component {
     return (
       <ul>
         {this.props.errors.map((error, i) => (
-          <li key={i}>{error}</li>
+          <li key={ i }>
+            { error }
+          </li>
         ))}
       </ul>
     );
-  }
-
-  guestLogin(e) {
-    e.preventDefault();
-    this.props.processForm({ username: 'Guest', password: 'password'})
-      .then(() => (
-        this.props.router.push('/home/notebooks/all/notes/all')
-      ));
   }
 
   render() {
@@ -73,38 +66,38 @@ class AuthForm extends React.Component {
 
         <figure className='auth-form-top'>
           <img src="https://www.dropbox.com/s/68ohcpzvzc3c26w/1484384030_Vector-icons_39.png?raw=1"
-            alt="Logo" />
+               alt="Logo" />
 
-          <h3>{text}</h3>
+          <h3>{ text }</h3>
         </figure>
 
         <div className='auth-form-main'>
-          {this.renderErrors()}
+          { this.renderErrors() }
 
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={ this.handleSubmit }>
 
             <input type="text"
-                  className='auth-form-input'
-                  value={this.state.username}
-                  placeholder='Username'
-                  onChange={this.update('username')} />
+                   className='auth-form-input'
+                   value={ this.state.username }
+                   placeholder='Username'
+                   onChange={ this.update('username') } />
 
             <input type="password"
-                  className='auth-form-input'
-                  value={this.state.password}
-                  placeholder='Password'
-                  onChange={this.update('password')} />
+                   className='auth-form-input'
+                   value={ this.state.password }
+                   placeholder='Password'
+                   onChange={ this.update('password') } />
 
             <input type="submit"
-                  value={text} />
+                   value={ text } />
 
-            {this.renderGuestButton()}
+            { this.renderGuestButton() }
           </form>
         </div>
 
         <div className='switch-panel'>
-          <p>{firstWord} have an account?</p>
-          <Link to={`/${oppositeForm}`}>{oppositeText}</Link>
+          <p>{ firstWord } have an account?</p>
+          <Link to={`/${ oppositeForm }`}>{ oppositeText }</Link>
         </div>
       </div>
     );
