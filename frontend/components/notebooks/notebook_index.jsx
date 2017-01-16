@@ -16,8 +16,8 @@ class NotebookIndex extends React.Component {
     const notesPerNotebook = this.props.notesPerNotebook;
     const notebooks = this.props.notebooks;
     const notebooksId = Object.keys(notebooks);
- 
-    return (
+  
+    return this.props.children || (
       <div className='notebook-index'>
         <NotebookHeader />
 

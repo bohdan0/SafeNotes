@@ -4,7 +4,7 @@ import { hashHistory } from 'react-router';
 const NotebookIndexItem = ({ notebook, amount }) => {
 
   const handleClick = () => (
-    hashHistory.push(`/home/notebooks/${ notebook.id }`)
+    hashHistory.push(`/home/notebooks/${ notebook.id }/notes/all`)
   );
 
   return (
