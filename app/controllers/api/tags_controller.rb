@@ -22,8 +22,9 @@ class Api::TagsController < ApplicationController
 
       taggings.map(&:destroy)
     else
-      tag = Tag.find(params[:id])
-      tag.destroy
+      @tag = Tag.find(params[:id])
+      @tag.destroy
+      render :show
     end
   end
 

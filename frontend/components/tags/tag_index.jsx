@@ -1,4 +1,6 @@
 import React from 'react';
+import merge from 'lodash/merge';
+import { hashHistory } from 'react-router';
 
 import TagIndexItem from './tag_index_item';
 import TagHeader from './tag_header';
@@ -12,6 +14,22 @@ class TagIndex extends React.Component {
   componentWillMount() {
     this.props.fetchAllTags()
       .then(tags => this.setState({ tags }));
+  }
+
+  deleteTag(tag) {
+    return e => {
+      let tags = merge({}, this.state.tags);
+      const key = tag.name[0].toUpperCase();
+
+      tags[key].map((_tag, i) => {
+        if (_tag.id === tag.id) tags[key].splice(i, 1);
+      });
+
+      if (tags[key].length === 0) delete tags[key];
+
+      this.props.deleteTag(tag.id)
+        .then(this.setState({ tags }));
+    };
   }
 
   render() {
@@ -32,14 +50,14 @@ class TagIndex extends React.Component {
 
               {tags[lttr].map(tag => (
                 <div className='tag-item-line'
-                    key={ tag.id }>
+                     key={ tag.id }>
                   <TagIndexItem tag={ tag }
                                 notes={ notes[tag.id] || 0 } />
 
                 <img src="https://www.dropbox.com/s/lmvyu800cif6lk8/1484607671_trash_bin.png?raw=1" 
                       alt="trash_can"
                       className='trash-can'
-                      onClick={() => this.props.deleteTag(tag.id) }/>
+                      onClick={ this.deleteTag(tag) }/>
 
                 </div>
               ))}

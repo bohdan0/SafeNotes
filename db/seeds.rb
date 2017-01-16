@@ -40,6 +40,9 @@ end
 Tag.create(name: 'guest cool', author_id: 4)
 Tag.create(name: 'guest ruby', author_id: 4)
 Tag.create(name: 'guest nope', author_id: 4)
+Tag.create(name: 'guest cool1', author_id: 4)
+Tag.create(name: 'guest ruby1', author_id: 4)
+Tag.create(name: 'guest nope1', author_id: 4)
 
 Tagging.create(tag_id: 5, note_id: 4)
 Tagging.create(tag_id: 6, note_id: 5)

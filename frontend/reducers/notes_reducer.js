@@ -1,6 +1,7 @@
 import merge from 'lodash/merge';
 
 import { REMOVE_NOTEBOOK } from '../actions/notebook_actions';
+import { REMOVE_TAG } from '../actions/tag_actions';
 import { RECEIVE_ALL_NOTES,
          RECEIVE_NOTE,
          REMOVE_NOTE } from '../actions/note_actions';
@@ -21,6 +22,22 @@ const NotesRecuder = (state = _nullNotes, action) => {
       Object.keys(newState).map(noteId => {
         if (state[noteId].notebook_id === action.notebook.id) {
           delete newState[noteId];
+        }
+      });
+
+      return newState;
+    case REMOVE_TAG:
+      Object.keys(newState).map(noteId => {
+        let tags = newState[noteId].tags;
+        let tagIds = newState[noteId].tag_ids;
+
+        if (tags[action.tag.id]) {
+          delete tags[action.tag.id];
+          newState[noteId].tags = tags;
+          
+          const idToDelete = tagIds.indexOf(action.tag.id);
+          tagIds.splice(idToDelete, 1);
+          newState[noteId].tag_ids = tagIds;
         }
       });
 

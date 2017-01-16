@@ -4,6 +4,7 @@ import TagIndex from './tag_index';
 import tagsSelector from '../../selectors/tags_selector';
 import { countByTagId } from '../../selectors/note_selectors';
 import * as TagApiUtil from '../../util/tags_api_util';
+import { deleteTag } from '../../actions/tag_actions';
 
 const mapStateToProps = ({ notes }, { params }) => {
   const tagId = params.tagId;
@@ -25,7 +26,7 @@ const mapStateToProps = ({ notes }, { params }) => {
 
 const mapDispatchToProps = dispatch => ({
   fetchAllTags: () => TagApiUtil.fetchAllTags(),
-  deleteTag: id => TagApiUtil.deleteTag(id)
+  deleteTag: id => dispatch(deleteTag(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TagIndex);

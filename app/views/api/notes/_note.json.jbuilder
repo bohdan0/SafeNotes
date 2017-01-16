@@ -1,5 +1,6 @@
 json.extract! note, :id, :title, :body, :notebook_id
 
+json.tags({})
 json.tags do 
   note.tags.each do |tag|
     json.set! tag.id do
