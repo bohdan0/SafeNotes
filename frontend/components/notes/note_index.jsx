@@ -36,7 +36,8 @@ class NoteIndex extends React.Component {
             {notesId.map(id => (
               <NoteIndexItem note={ notes[id] } 
                              key={ id }
-                             handleClick={ this.updateCurrentNote }/>
+                             handleClick={ this.updateCurrentNote }
+                             deleteNote={ this.props.deleteNote }/>
             ))}
           </div>
         </div>

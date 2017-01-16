@@ -29,7 +29,7 @@ Tagging.create(tag_id: 3, note_id: 3)
 
 User.create(username: 'Guest', password: 'password')
 
-(1..3).each do |i|
+(1..9).each do |i|
   Notebook.create(title: "guest notebook #{i}", author_id: 4)
 end
 

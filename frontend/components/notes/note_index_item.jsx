@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NoteIndexItem = ({ note, handleClick }) => {
+const NoteIndexItem = ({ note, handleClick, deleteNote }) => {
 
   return (
     <div className='note-item'
@@ -13,7 +13,8 @@ const NoteIndexItem = ({ note, handleClick }) => {
 
       <img src="https://www.dropbox.com/s/gm863mao8z0rnww/big-garbage-bin.png?raw=1" 
            alt="trash_can"
-           className='trash-can'/>
+           className='trash-can'
+           onClick={ () => deleteNote(note.id) }/>
     </div>
   );
 };
