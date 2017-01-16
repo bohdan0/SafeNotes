@@ -26,3 +26,10 @@ export const createTag = name => (
     data: { tag: { name } }
   })
 );
+
+export const deleteTag = id => (
+  $.ajax({
+    url: `/api/tags/${ id }`,
+    method: `DELETE`
+  })
+);

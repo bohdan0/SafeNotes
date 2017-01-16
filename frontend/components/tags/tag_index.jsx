@@ -38,7 +38,8 @@ class TagIndex extends React.Component {
 
                 <img src="https://www.dropbox.com/s/lmvyu800cif6lk8/1484607671_trash_bin.png?raw=1" 
                       alt="trash_can"
-                      className='trash-can'/>
+                      className='trash-can'
+                      onClick={() => this.props.deleteTag(tag.id) }/>
 
                 </div>
               ))}

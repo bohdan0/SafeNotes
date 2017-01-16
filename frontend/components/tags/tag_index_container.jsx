@@ -24,7 +24,8 @@ const mapStateToProps = ({ notes }, { params }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchAllTags: () => TagApiUtil.fetchAllTags()
+  fetchAllTags: () => TagApiUtil.fetchAllTags(),
+  deleteTag: id => TagApiUtil.deleteTag(id)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TagIndex);
