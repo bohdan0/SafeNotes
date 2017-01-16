@@ -20,7 +20,7 @@ class NewForm extends React.Component {
     e.preventDefault();
     const param = this.props.params.param;
     this.props[param](this.state.title)
-      .then(() => hashHistory.push('/'));
+      .then(() => hashHistory.push(`/home/${ param }s/all`));
   }
 
   render() {
@@ -41,25 +41,25 @@ class NewForm extends React.Component {
           <form className='new-form'
                 onSubmit={ this.handleSubmit }>
             <img src={ imgUrl }
-                alt="new"/>
+                 alt="new"/>
 
             <h1>CREATE { word.toUpperCase() }</h1>
 
             <input type="text"
-                  placeholder={ placeholder }
-                  onChange={ this.update() }
-                  value={ this.state.title }/>
+                   placeholder={ placeholder }
+                   onChange={ this.update() }
+                   value={ this.state.title }/>
 
             <div className='buttons'>
 
-              <Link to='/'>
-                <input type="button"
-                      onClick={ this.cancel }
-                      value='Cancel'/>
-              </Link>
+              
+            <input type="button"
+                   onClick={ () => hashHistory.goBack() }
+                   value='Cancel'/>
+              
 
               <input type="submit"
-                    value={ `Create ${ word }` }/>
+                     value={ `Create ${ word }` }/>
             </div>
           </form>
         </div>
