@@ -10,7 +10,7 @@ const TagIndexItem = ({ tag, notes }) => {
   return (
     <div className='tag-item'
          onClick={ handleClick }>
-      <span>{ tag.name }</span>
+      <p>{ tag.name }</p>
       <span>{ notes }</span>
     </div>
   );

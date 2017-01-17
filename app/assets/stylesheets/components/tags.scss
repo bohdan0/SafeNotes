@@ -54,12 +54,20 @@
       justify-content: flex-start;
 
       .tag-item {
-        display: inline;
         padding: 2px 12px;
         background: #f8f8f8;
         border: 1px solid #d1d1d1;
         border-radius: 5px;
         font-size: 14px;
+        display: flex;
+        justify-content: flex-start;
+
+        p {
+          max-width: 300px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
 
         span:last-of-type {
           margin-left: 10px;
@@ -86,7 +94,7 @@
         border: 1px solid #1fae52;
         cursor: pointer;
 
-        span {
+        span, p {
           color: white;
         }
       }
