@@ -35,7 +35,8 @@ class TextArea extends React.Component {
 
     return (
       <div className='text-area'>
-        <input className='title'
+        <input autoFocus
+               className='title'
                value={ this.state.title }
                onChange={ this.update('title') }
                placeholder='Title your new note...'/>

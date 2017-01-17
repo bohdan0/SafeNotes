@@ -46,6 +46,7 @@ class NewForm extends React.Component {
             <h1>CREATE { word.toUpperCase() }</h1>
 
             <input type="text"
+                   autoFocus
                    placeholder={ placeholder }
                    onChange={ this.update() }
                    value={ this.state.title }/>
