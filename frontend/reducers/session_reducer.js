@@ -1,9 +1,8 @@
 import merge from 'lodash/merge';
 
 import { RECEIVE_ERRORS } from '../actions/session_actions';
-import {
-  RECEIVE_CURRENT_USER,
-  LOGOUT } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER,
+         LOGOUT } from '../actions/session_actions';
 
 const _nullUser = ({
   id: null,
