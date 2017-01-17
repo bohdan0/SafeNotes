@@ -1,4 +1,4 @@
-json.extract! note, :id, :title, :body, :notebook_id
+json.extract! note, :id, :title, :body, :notebook_id, :updated_at
 
 json.tags({})
 json.tags do 
