@@ -1,4 +1,4 @@
-import { hashHistory } from 'react-router';
+import { Link } from 'react-router';
 import React from 'react';
 
 const Sidebar = ({ logout }) => (
@@ -9,31 +9,35 @@ const Sidebar = ({ logout }) => (
               alt="Logo" 
               className="logo"/>
 
-        <img className='sidebar-btn side-new'
-              value='new_note'
-              onClick={ () => console.log('coming soon') }
-              src='https://www.dropbox.com/s/oknhbq0hezhgcv1/plus%20%281%29.svg?raw=1'/>
+        <Link to='/new/note'>
+          <img className='sidebar-btn side-new'
+               alt='new_note'
+               src='https://www.dropbox.com/s/oknhbq0hezhgcv1/plus%20%281%29.svg?raw=1'/>
+        </Link>
       </div>
 
       <ul className='nav'>
         <li className='sidebar-btn'>
-          <img className='side-notes'
-                onClick={ () => hashHistory.push(`/home/notebooks/all/notes/all`) }
-                src='https://www.dropbox.com/s/y8vier7wdrkhznz/document-with-text-lines-.png?raw=1'/>
+          <Link to='/home/notebooks/all/notes/all'>
+            <img className='side-notes'
+                 src='https://www.dropbox.com/s/y8vier7wdrkhznz/document-with-text-lines-.png?raw=1'/>
+          </Link>
         </li>
 
         <li className='sidebar-btn'>
-          <img className='side-notebooks'
-                alt='notebooks'
-                onClick={ () => hashHistory.push(`/home/notebooks/all`) } 
-                src='https://www.dropbox.com/s/pm1zj16cibldspl/book-with-bookmarker.png?raw=1'/>
+          <Link to='/home/notebooks/all'>
+            <img className='side-notebooks'
+                 alt='notebooks'
+                 src='https://www.dropbox.com/s/pm1zj16cibldspl/book-with-bookmarker.png?raw=1'/>
+          </Link>
         </li>
 
         <li className='sidebar-btn'>
-          <img className='side-tags'
-                src='https://www.dropbox.com/s/bik2y2v7tt9l88y/clothes-tag.png?raw=1'
-                alt='tags'
-                onClick={ () => hashHistory.push(`/home/tags/all`) }/>
+          <Link to='/home/tags/all'>
+            <img className='side-tags'
+                 alt='tags'
+                 src='https://www.dropbox.com/s/bik2y2v7tt9l88y/clothes-tag.png?raw=1'/>
+          </Link>
         </li>
       </ul>
 

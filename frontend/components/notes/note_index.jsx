@@ -22,6 +22,17 @@ class NoteIndex extends React.Component {
     };
   }
 
+  renderTextEditor(currentNote) {
+    if (this.props.params.notebookId || currentNote) {
+      return (
+        <TextEditorContainer note={ currentNote }
+                             notebookId={ this.props.params.notebookId } />
+      );
+    } else {
+      return null;
+    }
+  }
+
   render() {
     const notes = this.props.notes;
     const notesId = Object.keys(notes);
@@ -41,9 +52,7 @@ class NoteIndex extends React.Component {
             ))}
           </div>
         </div>
-
-        <TextEditorContainer note={ currentNote }
-                             notebookId={ this.props.params.notebookId } />
+        { this.renderTextEditor(currentNote) }
       </div>
     );
   }
