@@ -42,7 +42,8 @@ class NoteIndex extends React.Component {
           </div>
         </div>
 
-        <TextEditorContainer note={ currentNote } />
+        <TextEditorContainer note={ currentNote }
+                             notebookId={ this.props.params.notebookId } />
       </div>
     );
   }

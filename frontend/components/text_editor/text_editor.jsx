@@ -14,7 +14,9 @@ class TextEditor extends React.Component {
       <div className='text-editor'>
         <Menu />
         <TextArea note={ this.props.note }
-                  updateNote={ this.props.updateNote } />
+                  notebookId={ this.props.notebookId }
+                  updateNote={ this.props.updateNote } 
+                  createNote={ this.props.createNote }/>
       </div>
     );
   }
