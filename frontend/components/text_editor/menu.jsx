@@ -1,3 +1,4 @@
+import ReactQuill from 'react-quill';
 import React from 'react';
 
 class Menu extends React.Component {
@@ -10,6 +11,7 @@ class Menu extends React.Component {
     return (
       <div className='menu'>
         <h1>TEXT EDITING MENU</h1>
+        <ReactQuill />
       </div>
     );
   }
