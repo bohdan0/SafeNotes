@@ -8,10 +8,6 @@ class NotebookIndex extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.props.getAllNotebooks();
-  }
-
   render() {
     const notesPerNotebook = this.props.notesPerNotebook;
     const notebooks = this.props.notebooks;

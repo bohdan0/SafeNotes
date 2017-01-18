@@ -10,12 +10,14 @@ class Home extends React.Component {
 
   componentWillMount() {
     this.props.getAllNotes();
+    this.props.getAllNotebooks();
   }
 
   render() {
+
     return (
       <div className='home'>
-        <SidebarContainer router={ this.props.router }/>
+        { this.props.location.pathname === '/home/new/note' ? '' : <SidebarContainer router={ this.props.router }/> }
 
         <div className='main'>
           { this.props.children }
