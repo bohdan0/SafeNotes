@@ -1,59 +1,105 @@
+import { hashHistory } from 'react-router';
 import ReactQuill from 'react-quill';
+import merge from 'lodash/merge';
 import React from 'react';
 
 class TextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.note || { id: null, 
-                                 title: '', 
-                                 body: '',
+                                 title: undefined, 
+                                 body: undefined,
+                                 tags: {},
+                                 tag_ids: [],
                                  notebook_id: props.notebookId };
+
+    this._buttonCallback = this._buttonCallback.bind(this);
   }
 
   componentWillReceiveProps({ note }) {
-    this.setListenerForTag(note);
-
-    const { id, title, body, notebook_id } = note;
-    this.setState({ id, title, body, notebook_id });
+    if (note) {
+      const { id, title, body, tags, tag_ids, notebook_id } = note;
+      this.setState({ id, title, body, tags, tag_ids, notebook_id });
+    }
   }
 
   autosave() {
     clearTimeout(this.timeout);
-
-    if (this.state.id) {
-      this.timeout = setTimeout(() => this.props.updateNote(this.state), 500);
-    } else if (this.state.body.length > 0 && this.state.title.length > 0) {
-      this.timeout = setTimeout(() => this.props.createNote(this.state)
-        .then(note => this.setState({ note })), 500);
+    const newNote = this.state;
+    
+    if (newNote.id) {
+      this.timeout = setTimeout(() => this.props.updateNote(newNote), 500);
+    } else if (newNote.body && newNote.title && newNote.notebook_id) {
+      this.timeout = setTimeout(() => this.props.createNote(newNote)
+        .then(res => {
+          const { id, title, body, tags, tag_ids, notebook_id } = res.note;
+          this.setState({ id, title, body, notebook_id });
+        }), 500);
     }
   }
 
   update(type) {
     return e => {
       const text = type === 'body' ? e : e.target.value;
-      this.setState({ [type]: text }, this.autosave());
+      this.setState({ [type]: text }, () => this.autosave());
     };
   }
 
   setListenerForTag(note) {
     $("#newTag").off('keyup');
     $("#newTag").on('keyup', e => { 
-      const tagName = e.target.value;
 
+      const tagName = e.target.value;
       if (e.keyCode === 13 && tagName.length > 0) {
-        this.props.tagNote(note.id, tagName)
-          .then($("#newTag").val(''));
+        if (note.id) {
+          this.props.tagNote(note.id, tagName)
+            .then(() => $("#newTag").val(''))
+            .fail(err => $("#newTag").val(''));
+        } else {
+          this.props.createTag(tagName)
+            .then(tag => {
+              this.setState({ tags: merge({}, this.state.tags, { [tag.id]: tag }),
+                              tag_ids: [...this.state.tag_ids, tag.id] });
+              $("#newTag").val('');
+            })
+            .fail(err => $("#newTag").val(''));
+        }
       }
     });
   }
 
+  renderButton() {
+    if (!this.props.notebookId) {
+      return (
+        <button type="button"
+                className='done-button'
+                onClick={ this._buttonCallback }>
+          { this.state.id ? 'Done' : 'Cancel' }
+        </button>
+      );  
+    } else {
+      return null;
+    }
+  }
+
+  _buttonCallback() {
+    if (this.state.id) {
+      hashHistory.push(`/home/notebooks/${ this.state.notebook_id }/notes/all`);
+    } else {
+      hashHistory.goBack();
+    }
+  }
+
   renderOptionMenu() {
-    if (this.props.note) {
-      const note = this.props.note;
+    const note = this.state;
+
+    if (note) {
       const tagIds = note.tag_ids;
 
       return (
         <div className='option'>
+        { this.chooseNotebook() }
+          
           <ul className='option-list'>
             { tagIds.map(tagId => (
                 <li key={ tagId }
@@ -72,15 +118,43 @@ class TextEditor extends React.Component {
     }
   }
 
+  chooseNotebook() {
+    const notebooks = this.props.notebooks;
+
+    if (notebooks) {
+      return (
+        <div className='ql-toolbar'>
+          <select className='editor-notebooks ql-picker'
+                  onChange={ this.update('notebook_id') }>
+            { this.props.notebookId ? '' : <option selected disabled>Choose Notebook</option> }
+
+            {Object.keys(notebooks).map(notebookId => (
+              <option value={ notebookId }
+                      selected={ this.props.notebookId === notebookId ? true : false }
+                      key={ notebookId }>
+                { notebooks[notebookId].title }
+              </option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+  }
+
   render() {
+    this.setListenerForTag(this.state);
 
     return (
       <div className='text-editor'>
-        <input autoFocus
-               className='title'
-               value={ this.state.title }
-               onChange={ this.update('title') }
-               placeholder='Title your note...'/>
+        <div className='editor-nav'>
+          <input autoFocus
+                className='title'
+                value={ this.state.title }
+                onChange={ this.update('title') }
+                placeholder='Title your note...'/>
+
+          { this.renderButton() }
+        </div>
 
         { this.renderOptionMenu() }
        
