@@ -34,6 +34,10 @@
         border-radius: 5px;
         font-size: 14px;
       }
+
+      .tag-name:first-of-type {
+        margin-left: 0;
+      }
     }
 
     #newTag {

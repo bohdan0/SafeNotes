@@ -8,16 +8,13 @@ class TextEditor extends React.Component {
                                  title: '', 
                                  body: '',
                                  notebook_id: props.notebookId };
-
-    this.update = this.update.bind(this);
-    this.tagNote = this.tagNote.bind(this);
   }
 
   componentWillReceiveProps({ note }) {
-    if (note) {
-      const { id, title, body, notebook_id } = note;
-      this.setState({ id, title, body, notebook_id });
-    }
+    this.setListenerForTag(note);
+
+    const { id, title, body, notebook_id } = note;
+    this.setState({ id, title, body, notebook_id });
   }
 
   autosave() {
@@ -32,38 +29,28 @@ class TextEditor extends React.Component {
   }
 
   update(type) {
-    if (type === 'body') {
-      return text => {
-        this.setState({ [type]: text }, this.autosave());
-      };
-    } else {
-      return e => {
-        this.setState({ [type]: e.target.value }, this.autosave());
-      };
-    }
+    return e => {
+      const text = type === 'body' ? e : e.target.value;
+      this.setState({ [type]: text }, this.autosave());
+    };
   }
 
-  tagNote() {
-    return e => {
-      e.preventDeafult();
-      console.log('coming soon');
-    };
+  setListenerForTag(note) {
+    $("#newTag").off('keyup');
+    $("#newTag").on('keyup', e => { 
+      const tagName = e.target.value;
+
+      if (e.keyCode === 13 && tagName.length > 0) {
+        this.props.tagNote(note.id, tagName)
+          .then($("#newTag").val(''));
+      }
+    });
   }
 
   renderOptionMenu() {
     if (this.props.note) {
       const note = this.props.note;
       const tagIds = note.tag_ids;
-
-    $("#newTag").on('keyup', e => { 
-      const noteId = this.props.note.id;
-      const tagName = e.target.value;
-
-      if (e.keyCode == 13 && tagName.length > 0) {
-        this.props.tagNote(noteId, tagName)
-          .then($("#newTag").val(''));
-      }
-    });
 
       return (
         <div className='option'>
