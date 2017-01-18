@@ -13,13 +13,11 @@ class NoteIndex extends React.Component {
   }
 
   updateCurrentNote(currentNote) {
-    return (e) => {
-      if (this.props.params.notebookId) {
-        hashHistory.push(`/home/notebooks/${ this.props.params.notebookId }/notes/${ currentNote.id }`);
-      } else {
-        hashHistory.push(`/home/tags/${ this.props.params.tagId }/notes/${ currentNote.id }`);
-      }
-    };
+    if (this.props.params.notebookId) {
+      hashHistory.push(`/home/notebooks/${ this.props.params.notebookId }/notes/${ currentNote.id }`);
+    } else {
+      hashHistory.push(`/home/tags/${ this.props.params.tagId }/notes/${ currentNote.id }`);
+    }
   }
 
   renderTextEditor(currentNote) {
