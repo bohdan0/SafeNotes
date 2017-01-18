@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112021438) do
+ActiveRecord::Schema.define(version: 20170118044107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170112021438) do
     t.datetime "updated_at", null: false
     t.integer  "author_id",  null: false
     t.index ["author_id"], name: "index_tags_on_author_id", using: :btree
-    t.index ["name"], name: "index_tags_on_name", unique: true, using: :btree
+    t.index ["name", "author_id"], name: "index_tags_on_name_and_author_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

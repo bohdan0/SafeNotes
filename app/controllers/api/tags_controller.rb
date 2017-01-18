@@ -3,15 +3,22 @@ class Api::TagsController < ApplicationController
     @tags = Tag.all
       .where(author: current_user)
 
-    render '/api/tags/index'
+    render :index
   end
 
   def create
-    # tag = Tag.find_by_name(params[:tag_name])
-    # tag = Tag.create(name: params[:tag_name], author_id: current_user.id) unless tag
-    # note = Note.find(params[:note_id])
-    # @tagging = Tagging.create(tag, note)
-    a = Tag.create(name: tag_params[:name], author: current_user)
+    if params[:note_id]
+      @tag = Tag.find_by_name(params[:tag_name]) ||
+        Tag.create(name: params[:tag_name], author: current_user)
+      
+      Tagging.create(tag: @tag, note_id: params[:note_id])
+
+      render :show
+    else
+      @tag = Tag.create(name: params[:tag_name], author: current_user)
+
+      render :show
+    end
   end
 
   def destroy
@@ -31,6 +38,6 @@ class Api::TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:id, :tag_name)
   end
 end
