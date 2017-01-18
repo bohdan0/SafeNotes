@@ -5,10 +5,11 @@ export const fetchAllTags = () => (
   })
 );
 
-export const tagNote = (noteId, tagName) => (
+export const tagNote = (noteId, tag_name) => (
   $.ajax({
-    url: `/api/notes/${noteId}/tags/${tagName}`,
-    method: `POST`
+    url: `/api/notes/${noteId}/tags`,
+    method: `POST`,
+    data: { tag_name }
   })
 );
 
