@@ -23,7 +23,8 @@ const SessionReducer = (state = _nullUser, action) => {
     case LOGOUT:
       return _nullUser;
     default:
-      return state;
+      newState.errors = [];
+      return newState;
   }
 };
 
