@@ -29,6 +29,7 @@ class Api::NotesController < ApplicationController
     @note.author = current_user
 
     if @note.save
+      params[:note][:tag_ids].map { |tag_id| Tagging.create(tag_id: tag_id, note: @note) } if params[:note][:tag_ids]
       render '/api/notes/show'
     else
       render json: @note.errors.full_messages, status: 422
@@ -55,6 +56,6 @@ class Api::NotesController < ApplicationController
   private
 
   def note_params
-    params.require(:note).permit(:title, :body, :author_id, :notebook_id)
+    params.require(:note).permit(:title, :body, :notebook_id)
   end
 end

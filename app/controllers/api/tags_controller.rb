@@ -15,7 +15,8 @@ class Api::TagsController < ApplicationController
 
       render :show
     else
-      @tag = Tag.create(name: params[:tag_name], author: current_user)
+      @tag = Tag.find_by_name(params[:tag_name]) ||
+        Tag.create(name: params[:tag_name], author: current_user)
 
       render :show
     end
