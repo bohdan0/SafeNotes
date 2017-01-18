@@ -57,8 +57,9 @@ class TextEditor extends React.Component {
           <ul className='option-list'>
             { tagIds.map(tagId => (
                 <li key={ tagId }
+                    onClick={ () => this.props.untagNote(note.id, note.tags[tagId].name) }
                     className='tag-name'>
-                  { note.tags[tagId].name }
+                  <span>{ note.tags[tagId].name }</span>
                 </li>
             ))}
           </ul>

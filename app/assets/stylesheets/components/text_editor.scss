@@ -35,6 +35,16 @@
         font-size: 14px;
       }
 
+      .tag-name:hover {
+        background: #2dbe60;
+        border: 1px solid #1fae52;
+        cursor: pointer;
+
+        span {
+          color: white;
+        }
+      }
+
       .tag-name:first-of-type {
         margin-left: 0;
       }

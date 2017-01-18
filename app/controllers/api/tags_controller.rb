@@ -22,12 +22,14 @@ class Api::TagsController < ApplicationController
   end
 
   def destroy
-    if params[:tag_name] && params[:note_id]
-      tag = Tag.find_by_name(params[:tag_name])
+    if params[:note_id]
+      @tag = Tag.find_by_name(params[:id])
       taggings = Tagging.all
-        .where(note_id: params[:note_id], tag: tag)
+        .where(note_id: params[:note_id], tag: @tag)
 
       taggings.map(&:destroy)
+
+      render :show
     else
       @tag = Tag.find(params[:id])
       @tag.destroy

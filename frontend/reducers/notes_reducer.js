@@ -45,13 +45,14 @@ const NotesRecuder = (state = _nullNotes, action) => {
 
       return newState;
     case RECEIVE_TAGGING:
-      let { noteId, tag } = action.data;
+      var { noteId, tag } = action.data;
 
       newState[noteId].tags[tag.id] = tag;
       newState[noteId].tag_ids.push(tag.id);
 
       return newState;
     case REMOVE_TAGGING:
+      var { noteId, tag } = action.data;
       let tagIds = newState[noteId].tag_ids;
       delete newState[noteId].tags[tag.id];
       const idxToDelete = tagIds.indexOf(tag.id);
