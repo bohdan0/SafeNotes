@@ -1,7 +1,5 @@
+import ReactQuill from 'react-quill';
 import React from 'react';
-
-import Menu from './menu';
-import TextArea from './text_area';
 
 class TextEditor extends React.Component {
   constructor(props) {
@@ -21,28 +19,44 @@ class TextEditor extends React.Component {
     }
   }
 
-  update(type) {
-    return e => {
-      this.setState({ [type]: e.target.value }, () => {
-        clearTimeout(this.timeout);
+  autosave() {
+    clearTimeout(this.timeout);
 
-        if (this.state.id) {
-          this.timeout = setTimeout(() => this.props.updateNote(this.state), 500);
-        } else if (this.state.body.length > 0 && this.state.title.length > 0) {
-          this.timeout = setTimeout(() => this.props.createNote(this.state)
-            .then(note => this.setState({ note })), 500);
-        }
-      });
-    };
+    if (this.state.id) {
+      this.timeout = setTimeout(() => this.props.updateNote(this.state), 500);
+    } else if (this.state.body.length > 0 && this.state.title.length > 0) {
+      this.timeout = setTimeout(() => this.props.createNote(this.state)
+        .then(note => this.setState({ note })), 500);
+    }
+  }
+
+  update(type) {
+    if (type === 'body') {
+      return text => {
+        console.log(text.innerHTML);
+        this.setState({ [type]: text }, this.autosave());
+      };
+    } else {
+      return e => {
+        this.setState({ [type]: e.target.value }, this.autosave());
+      };
+    }
   }
 
   render() {
 
     return (
       <div className='text-editor'>
-        <Menu />
-        <TextArea note={ this.state }
-                  update={ this.update }/>
+        <input autoFocus
+               className='title'
+               value={ this.state.title }
+               onChange={ this.update('title') }
+               placeholder='Title your note...'/>
+       
+        <ReactQuill className='text-area'
+                    theme='snow'
+                    value={ this.state.body }
+                    onChange={ this.update('body') } />
       </div>
     );
   }
