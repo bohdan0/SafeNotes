@@ -15,6 +15,42 @@
     color: #2dbe60;
   }
 
+  .option {
+    width: 100%;
+    height: 26px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: row;
+
+    .option-list {
+      display: flex;
+      flex-direction: row;
+
+      .tag-name {
+        margin: 0 5px;
+        padding: 2px 7px;
+        background: #f8f8f8;
+        border: 1px solid #ececec;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+    }
+
+    #newTag {
+      margin: 0 5px;
+      padding: 2px 7px;
+      background: #f8f8f8;
+      border: 1px solid #ececec;
+      border-radius: 5px;
+      font-size: 14px;
+      width: 25px;
+    }
+
+    #newTag:focus {
+      width: auto;
+    }
+  }
+
   .text-area {
     height: 100%;
     width: 100%;

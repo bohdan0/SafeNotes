@@ -10,6 +10,7 @@ class TextEditor extends React.Component {
                                  notebook_id: props.notebookId };
 
     this.update = this.update.bind(this);
+    this.tagNote = this.tagNote.bind(this);
   }
 
   componentWillReceiveProps({ note }) {
@@ -33,13 +34,53 @@ class TextEditor extends React.Component {
   update(type) {
     if (type === 'body') {
       return text => {
-        console.log(text.innerHTML);
         this.setState({ [type]: text }, this.autosave());
       };
     } else {
       return e => {
         this.setState({ [type]: e.target.value }, this.autosave());
       };
+    }
+  }
+
+  tagNote() {
+    return e => {
+      e.preventDeafult();
+      console.log('coming soon');
+    };
+  }
+
+  renderOptionMenu() {
+    if (this.props.note) {
+      const note = this.props.note;
+      const tagIds = note.tag_ids;
+
+    $("#newTag").on('keyup', e => { 
+      const noteId = this.props.note.id;
+      const tagName = e.target.value;
+
+      if (e.keyCode == 13 && tagName.length > 0) {
+        this.props.tagNote(noteId, tagName)
+          .then($("#newTag").val(''));
+      }
+    });
+
+      return (
+        <div className='option'>
+          <ul className='option-list'>
+            { tagIds.map(tagId => (
+                <li key={ tagId }
+                    className='tag-name'>
+                  { note.tags[tagId].name }
+                </li>
+            ))}
+          </ul>
+
+          <input type="text"
+                 id='newTag'
+                 placeholder='+'/>
+        </div>
+      );
     }
   }
 
@@ -52,11 +93,14 @@ class TextEditor extends React.Component {
                value={ this.state.title }
                onChange={ this.update('title') }
                placeholder='Title your note...'/>
+
+        { this.renderOptionMenu() }
        
         <ReactQuill className='text-area'
                     theme='snow'
                     value={ this.state.body }
                     onChange={ this.update('body') } />
+
       </div>
     );
   }

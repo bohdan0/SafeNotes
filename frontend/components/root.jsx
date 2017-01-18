@@ -2,11 +2,12 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
-import AuthFormContainer from './auth_form/auth_form_container';
 import NotebookIndexContainer from './notebooks/notebook_index_container';
+import TextEditorContainer from './text_editor/text_editor_container';
+import AuthFormContainer from './auth_form/auth_form_container';
 import NoteIndexContainer from './notes/note_index_container';
-import TagIndexContainer from './tags/tag_index_container';
 import NewFormContainer from './new_form/new_form_container';
+import TagIndexContainer from './tags/tag_index_container';
 import HomeContainer from './home/home_container';
 import App from './app';
 
@@ -42,6 +43,10 @@ const Root = ({ store }) => {
           <Route path='signup' 
                  component={ AuthFormContainer } 
                  onEnter={ _redirectIfLoggedIn } />
+
+          <Route path='new/note'
+                 component={ TextEditorContainer }
+                 onEnter={ _ensureLoggedIn } />
 
           <Route path='new/:param'
                  component={ NewFormContainer }
