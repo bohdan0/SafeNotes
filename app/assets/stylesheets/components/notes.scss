@@ -33,7 +33,7 @@
   height: 130px;
   border-top: 1px solid #ececec;
   color: grey;
-  padding: 20px;
+  padding: 12px 20px;
   box-sizing: border-box;
   overflow: hidden;
   display: flex;
@@ -54,9 +54,11 @@
   }
 
   p {
-    margin: 5px 0; 
+    margin: 10px 0; 
     height: 58px;
     width: 270px;
+    // text-overflow: ellipsis;
+    // white-space: wrap;
     overflow: hidden;
   }
 
