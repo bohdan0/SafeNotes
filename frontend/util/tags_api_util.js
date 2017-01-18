@@ -20,11 +20,11 @@ export const untagNote = (noteId, tagName) => (
   })
 );
 
-export const createTag = name => (
+export const createTag = tag_name => (
   $.ajax({
     url: `/api/tags`,
     method: `POST`,
-    data: { tag: { name } }
+    data: { tag_name }
   })
 );
 

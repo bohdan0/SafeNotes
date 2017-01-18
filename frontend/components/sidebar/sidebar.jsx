@@ -9,7 +9,7 @@ const Sidebar = ({ logout }) => (
               alt="Logo" 
               className="logo"/>
 
-        <Link to='/new/note'>
+        <Link to='/home/new/note'>
           <img className='sidebar-btn side-new'
                alt='new_note'
                src='https://www.dropbox.com/s/oknhbq0hezhgcv1/plus%20%281%29.svg?raw=1'/>

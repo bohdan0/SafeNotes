@@ -44,10 +44,6 @@ const Root = ({ store }) => {
                  component={ AuthFormContainer } 
                  onEnter={ _redirectIfLoggedIn } />
 
-          <Route path='new/note'
-                 component={ TextEditorContainer }
-                 onEnter={ _ensureLoggedIn } />
-
           <Route path='new/:param'
                  component={ NewFormContainer }
                  onEnter={ _ensureLoggedIn } />
@@ -58,6 +54,10 @@ const Root = ({ store }) => {
 
             <IndexRoute component={ NoteIndexContainer }
                         onEnter={ _ensureLoggedIn } />
+
+            <Route path='new/note'
+                  component={ TextEditorContainer }
+                  onEnter={ _ensureLoggedIn } />
 
             <Route path='notebooks/:notebookId'
                    component={ NotebookIndexContainer }
