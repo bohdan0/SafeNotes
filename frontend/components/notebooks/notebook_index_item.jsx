@@ -19,7 +19,7 @@ const NotebookIndexItem = ({ notebook, amount, deleteNotebook }) => {
         <span>{ amount } { amount === 1 ? 'note' : 'notes' }</span>
       </div>
 
-      <img src="https://www.dropbox.com/s/gm863mao8z0rnww/big-garbage-bin.png?raw=1" 
+      <img src="http://res.cloudinary.com/safenotes/image/upload/v1484796892/big-garbage-bin_tym3np.png" 
            alt="trash_can"
            className='trash-can'
            onClick={ () => deleteNotebook(notebook.id) }/>
