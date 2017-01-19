@@ -14,10 +14,12 @@ class TextEditor extends React.Component {
                                  notebook_id: props.notebookId };
 
     this._buttonCallback = this._buttonCallback.bind(this);
+    this._untagNote = this._untagNote.bind(this);
   }
 
   componentWillReceiveProps({ note }) {
     if (note) {
+      // this.setListenerForTag(note);
       const { id, title, body, tags, tag_ids, notebook_id } = note;
       this.setState({ id, title, body, tags, tag_ids, notebook_id });
     }
@@ -33,7 +35,7 @@ class TextEditor extends React.Component {
       this.timeout = setTimeout(() => this.props.createNote(newNote)
         .then(res => {
           const { id, title, body, tags, tag_ids, notebook_id } = res.note;
-          this.setState({ id, title, body, notebook_id });
+          this.setState({ id, title, body, tags, tag_ids, notebook_id });
         }), 500);
     }
   }
@@ -41,7 +43,7 @@ class TextEditor extends React.Component {
   update(type) {
     return e => {
       const text = type === 'body' ? e : e.target.value;
-      this.setState({ [type]: text }, () => this.autosave());
+      this.setState({ [type]: text, notebook_id: this.refs.notebookId.value }, () => this.autosave());
     };
   }
 
@@ -90,6 +92,12 @@ class TextEditor extends React.Component {
     }
   }
 
+  _untagNote(noteId, tagName) {
+    return () => {
+      this.props.untagNote(noteId, tagName);
+    };
+  }
+
   renderOptionMenu() {
     const note = this.state;
 
@@ -103,7 +111,7 @@ class TextEditor extends React.Component {
           <ul className='option-list'>
             { tagIds.map(tagId => (
                 <li key={ tagId }
-                    onClick={ () => this.props.untagNote(note.id, note.tags[tagId].name) }
+                    onClick={ this._untagNote(note.id, note.tags[tagId].name) }
                     className='tag-name'>
                   <span>{ note.tags[tagId].name }</span>
                 </li>
@@ -125,12 +133,12 @@ class TextEditor extends React.Component {
       return (
         <div className='ql-toolbar'>
           <select className='editor-notebooks ql-picker'
+                  ref='notebookId'
+                  value={ this.props.notebookId }
                   onChange={ this.update('notebook_id') }>
-            { this.props.notebookId ? '' : <option selected disabled>Choose Notebook</option> }
 
             {Object.keys(notebooks).map(notebookId => (
               <option value={ notebookId }
-                      selected={ this.props.notebookId === notebookId ? true : false }
                       key={ notebookId }>
                 { notebooks[notebookId].title }
               </option>

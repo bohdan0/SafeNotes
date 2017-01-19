@@ -31,21 +31,31 @@ class NoteIndex extends React.Component {
     }
   }
 
+  sortNotes(notes) {
+    return Object.values(notes).sort((note1, note2) => {
+      if (note1.updated_at > note2.updated_at) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
   render() {
     const notes = this.props.notes;
-    const notesId = Object.keys(notes);
-    const currentNote = notes[this.props.params.noteId] || notes[notesId[0]];
+    const sortedNotes = this.sortNotes(notes);
+    const currentNote = notes[this.props.params.noteId] || sortedNotes[0];
 
     return (
       <div className='main-page'>
         <div className='note-index'>
-          <NoteHeader amount={ notesId.length } 
+          <NoteHeader amount={ sortedNotes.length } 
                       headerName={ this.props.headerName }/>
 
           <div className='notes'>
-            {notesId.map(id => (
-              <NoteIndexItem note={ notes[id] } 
-                             key={ id }
+            {sortedNotes.map(note => (
+              <NoteIndexItem note={ note } 
+                             key={ note.id }
                              handleClick={ this.updateCurrentNote }
                              deleteNote={ this.props.deleteNote }/>
             ))}
