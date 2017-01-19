@@ -120,7 +120,7 @@ class TextEditor extends React.Component {
 
           <input type="text"
                  id='newTag'
-                 placeholder='+'/>
+                 placeholder='Add tag...'/>
         </div>
       );
     }
