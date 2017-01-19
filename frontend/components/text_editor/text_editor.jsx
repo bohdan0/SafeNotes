@@ -71,7 +71,7 @@ class TextEditor extends React.Component {
   }
 
   renderButton() {
-    if (!this.props.notebookId) {
+    if (hashHistory.getCurrentLocation().pathname === '/home/new/note') {
       return (
         <button type="button"
                 className='done-button'
