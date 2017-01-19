@@ -8,7 +8,7 @@ const TagHeader = ({ amount }) => {
       <h1>TAGS</h1>
 
       <Link to='/new/tag'>
-        <img src="https://www.dropbox.com/s/oiczjp03bwyq9tf/add-tag.png?raw=1" 
+        <img src="http://res.cloudinary.com/safenotes/image/upload/v1484796892/add-tag_qo0tmv.png" 
              alt="new_tag"/>
       </Link>
     </div>

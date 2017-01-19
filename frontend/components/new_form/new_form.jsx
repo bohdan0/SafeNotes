@@ -31,9 +31,9 @@ class NewForm extends React.Component {
     if (choices.includes(word)) {
       let imgUrl;
       if (word === 'notebook') {
-        imgUrl = "https://www.dropbox.com/s/b8ziisfsi8l3nsg/1484446527_notebook-512.png?raw=1";
+        imgUrl = "http://res.cloudinary.com/safenotes/image/upload/v1484796892/1484446527_notebook-512_ijpcnh.png";
       } else if (word === 'tag') {
-        imgUrl = "https://www.dropbox.com/s/xa0nb2zcqcd5mt3/1484475589_finance-25.png?raw=1";
+        imgUrl = "http://res.cloudinary.com/safenotes/image/upload/v1484797268/1484475589_finance-25_o68g8d.png";
       }
       
       return (
