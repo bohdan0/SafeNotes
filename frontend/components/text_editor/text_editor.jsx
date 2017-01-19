@@ -7,8 +7,8 @@ class TextEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = props.note || { id: null, 
-                                 title: undefined, 
-                                 body: undefined,
+                                 title: '', 
+                                 body: '',
                                  tags: {},
                                  tag_ids: [],
                                  notebook_id: props.notebookId };
@@ -29,7 +29,7 @@ class TextEditor extends React.Component {
     
     if (newNote.id) {
       this.timeout = setTimeout(() => this.props.updateNote(newNote), 500);
-    } else if (newNote.body && newNote.title && newNote.notebook_id) {
+    } else if (newNote.body.length > 0 && newNote.title.length > 0 && newNote.notebook_id) {
       this.timeout = setTimeout(() => this.props.createNote(newNote)
         .then(res => {
           const { id, title, body, tags, tag_ids, notebook_id } = res.note;

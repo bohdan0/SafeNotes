@@ -18,7 +18,7 @@ const NoteIndexItem = ({ note, handleClick, deleteNote }) => {
          onClick={ action }>
       <div className='note-item-info'>
         <h1>{ note.title }</h1>
-        <span>{ moment(note.updated_at).fromNow() }</span>
+        <span>LAST UPDATE: { moment(note.updated_at).fromNow().toLocaleUpperCase() }</span>
         <p>{ body.textContent }</p>
       </div>
 
