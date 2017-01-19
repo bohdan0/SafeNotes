@@ -59,6 +59,7 @@
         border: 1px solid #ececec;
         border-radius: 5px;
         font-size: 14px;
+        line-height: 20px;
       }
 
       .tag-name:hover {
@@ -80,12 +81,12 @@
       font-size: 14px;
       height: 24px;
       width: 75px;
+      line-height: 20px;
     }
 
     #newTag:focus {
       width: auto;
       height: 24px;
-      line-height: 24px;
     }
   }
 
