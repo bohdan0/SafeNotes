@@ -184,7 +184,7 @@ class TextEditor extends React.Component {
   }
 
   render() {
-console.log(this.state);
+
     return (
       <div className='text-editor'>
         <div className='editor-nav'>

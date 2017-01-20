@@ -1,9 +1,9 @@
 class Api::NotesController < ApplicationController
   def index
-    if params[:notebook_id]
+    if params[:note]
       @notes = Note.all
-        .where(notebook_id: params[:notebook_id])
         .where(author: current_user)
+        .where(notebook_id: note_params[:notebook_id])
         .includes(:tags)
     else
       @notes = Note.all
@@ -11,16 +11,16 @@ class Api::NotesController < ApplicationController
         .includes(:tags)
     end
 
-    render '/api/notes/index'
+    render :index
   end
 
   def show
     @note = Note.find(params[:id])
 
-    if @note.author == current_user
-      render '/api/notes/show'
+    if @note && @note.author == current_user
+      render :show
     else
-      render json: ['Access Denied'], status: 422
+      render json: ['Not Found'], status: 404
     end
   end
 
@@ -29,8 +29,11 @@ class Api::NotesController < ApplicationController
     @note.author = current_user
 
     if @note.save
-      params[:note][:tag_ids].map { |tag_id| Tagging.create(tag_id: tag_id, note: @note) } if params[:note][:tag_ids]
-      render '/api/notes/show'
+      (params[:note][:tag_ids] || []).each do |tag_id| 
+        Tagging.create(tag_id: tag_id, note: @note) 
+      end
+
+      render :show
     else
       render json: @note.errors.full_messages, status: 422
     end
@@ -40,7 +43,7 @@ class Api::NotesController < ApplicationController
     @note = Note.find(params[:id])
 
     if @note.update(note_params)
-      render 'api/notes/show'
+      render :show
     else
       render json: @note.errors.full_messages, status: 422
     end
@@ -50,7 +53,7 @@ class Api::NotesController < ApplicationController
     @note = Note.find(params[:id])
     @note.destroy
 
-    render 'api/notes/show'
+    render :show
   end
 
   private

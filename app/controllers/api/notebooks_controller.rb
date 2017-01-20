@@ -3,16 +3,16 @@ class Api::NotebooksController < ApplicationController
     @notebooks = Notebook.all
       .where(author: current_user)
 
-    render '/api/notebooks/index'
+    render :index
   end
 
   def show
     @notebook = Notebook.find(params[:id])
 
-    if @notebook.author == current_user
-      render '/api/notebooks/show'
+    if @notebook && @notebook.author == current_user
+      render :show
     else
-      render json: ['Access Denied'], status: 422
+      render json: ['Not Found'], status: 422
     end
   end
 
@@ -21,7 +21,7 @@ class Api::NotebooksController < ApplicationController
     @notebook.author = current_user
     
     if @notebook.save
-      render '/api/notebooks/show'
+      render :show
     else
       render json: @notebook.errors.full_messages, status: 422
     end
@@ -31,7 +31,7 @@ class Api::NotebooksController < ApplicationController
     @notebook = Notebook.find(params[:id])
     @notebook.destroy
 
-    render '/api/notebooks/show'
+    render :show
   end
 
   private

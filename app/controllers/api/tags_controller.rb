@@ -7,17 +7,18 @@ class Api::TagsController < ApplicationController
   end
 
   def create
+    @tag = Tag.find_by_name(params[:tag_name]) ||
+      Tag.create(name: params[:tag_name], author: current_user)
+
     if params[:note_id]
-      @tag = Tag.find_by_name(params[:tag_name]) ||
-        Tag.create(name: params[:tag_name], author: current_user)
-      
-      Tagging.create(tag: @tag, note_id: params[:note_id])
+      tagging = Tagging.new(tag: @tag, note_id: params[:note_id])
 
-      render :show
+      if tagging.save
+        render :show
+      else
+        render json: tagging.errors.full_messages, status: 422
+      end
     else
-      @tag = Tag.find_by_name(params[:tag_name]) ||
-        Tag.create(name: params[:tag_name], author: current_user)
-
       render :show
     end
   end
