@@ -15,12 +15,12 @@ original Evernote. My main goal is to get my features work without bugs.
 
 - [x] Hosting on [Heroku](https://safenotes.herokuapp.com "SafeNotes")
 - [x] Authentication
-- [ ] Notes
-- [ ] Tags
-- [ ] Notebooks
-- [ ] Rich-text editing
-- [ ] Auto Save
-- [ ] Production [README](../README.md)
+- [x] Notes
+- [x] Tags
+- [x] Notebooks
+- [x] Rich-text editing
+- [x] Auto Save
+- [x] Production [README](../README.md)
 
 
 ## Bonus Features
