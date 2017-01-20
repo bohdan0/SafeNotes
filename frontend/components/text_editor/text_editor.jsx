@@ -43,7 +43,7 @@ class TextEditor extends React.Component {
   update(type) {
     return e => {
       const text = type === 'body' ? e : e.target.value;
-      this.setState({ [type]: text, notebook_id: this.refs.notebookId.value }, () => this.autosave());
+      this.setState({ [type]: text }, () => this.autosave());
     };
   }
 
@@ -168,9 +168,9 @@ class TextEditor extends React.Component {
         <div className='ql-toolbar'>
           <select className='editor-notebooks ql-picker'
                   ref='notebookId'
-                  value={ this.props.notebookId }
+                  value={ this.state.notebook_id || undefined }
                   onChange={ this.update('notebook_id') }>
-
+              { this.state.notebook_id ? '' : <option value='undefined'>Choose Notebook</option> }
             {Object.keys(notebooks).map(notebookId => (
               <option value={ notebookId }
                       key={ notebookId }>
