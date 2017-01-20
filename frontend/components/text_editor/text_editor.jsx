@@ -14,12 +14,12 @@ class TextEditor extends React.Component {
                                  notebook_id: props.notebookId };
 
     this._buttonCallback = this._buttonCallback.bind(this);
+    this._tagNote = this._tagNote.bind(this);
     this._untagNote = this._untagNote.bind(this);
   }
 
   componentWillReceiveProps({ note }) {
     if (note) {
-      // this.setListenerForTag(note);
       const { id, title, body, tags, tag_ids, notebook_id } = note;
       this.setState({ id, title, body, tags, tag_ids, notebook_id });
     }
@@ -34,8 +34,8 @@ class TextEditor extends React.Component {
     } else if (newNote.body.length > 0 && newNote.title.length > 0 && newNote.notebook_id) {
       this.timeout = setTimeout(() => this.props.createNote(newNote)
         .then(res => {
-          const { id, title, body, tags, tag_ids, notebook_id } = res.note;
-          this.setState({ id, title, body, tags, tag_ids, notebook_id });
+          const { id, title, body, notebook_id } = res.note;
+          this.setState({ id, title, body, notebook_id });
         }), 500);
     }
   }
@@ -47,27 +47,34 @@ class TextEditor extends React.Component {
     };
   }
 
-  setListenerForTag(note) {
-    $("#newTag").off('keyup');
-    $("#newTag").on('keyup', e => { 
-
+  _tagNote(e) {
       const tagName = e.target.value;
+      const note = this.state;
+      e.persist();
+      const resetInput = () => {
+        e.target.value = '';
+      };
+      
       if (e.keyCode === 13 && tagName.length > 0) {
         if (note.id) {
           this.props.tagNote(note.id, tagName)
-            .then(() => $("#newTag").val(''))
-            .fail(err => $("#newTag").val(''));
+            .then(action => {
+              const tag = action.data.tag;
+
+              this.setState({ tags: merge({}, this.state.tags, { [tag.id]: tag }) });
+              resetInput();
+            })
+            .fail(err => console.log(err.responseJSON));
         } else {
           this.props.createTag(tagName)
             .then(tag => {
               this.setState({ tags: merge({}, this.state.tags, { [tag.id]: tag }),
-                              tag_ids: [...this.state.tag_ids, tag.id] });
-              $("#newTag").val('');
+                              tag_ids: [...this.state.tag_ids, tag.id] } );
+              resetInput();
             })
-            .fail(err => $("#newTag").val(''));
+            .fail(err => console.log(err.responseJSON));
         }
       }
-    });
   }
 
   renderButton() {
@@ -92,9 +99,33 @@ class TextEditor extends React.Component {
     }
   }
 
-  _untagNote(noteId, tagName) {
+  _untagNote(noteId, tagName, tagId) {
     return () => {
-      this.props.untagNote(noteId, tagName);
+      if (noteId) {
+        this.props.untagNote(noteId, tagName)
+          .then(action => {
+            var tags = merge({}, this.state.tags);
+            delete tags[tagId];
+
+            var tag_ids = this.state.tag_ids.slice();
+            tag_ids.map((id, pos) => {
+              if (id == tagId) tag_ids.splice(pos, 1);
+            });
+
+            this.setState({ tags: merge({}, tags), tag_ids});
+          });
+      } else {
+
+        var tags = merge({}, this.state.tags);
+        delete tags[tagId];
+
+        var tag_ids = this.state.tag_ids.slice();
+        tag_ids.map((id, pos) => {
+          if (id == tagId) tag_ids.splice(pos, 1);
+        });
+
+        this.setState({ tags: merge({}, tags), tag_ids});
+      }
     };
   }
 
@@ -102,7 +133,7 @@ class TextEditor extends React.Component {
     const note = this.state;
 
     if (note) {
-      const tagIds = note.tag_ids;
+      const tagIds = Object.keys(note.tags);
 
       return (
         <div className='option'>
@@ -111,7 +142,9 @@ class TextEditor extends React.Component {
           <ul className='option-list'>
             { tagIds.map(tagId => (
                 <li key={ tagId }
-                    onClick={ this._untagNote(note.id, note.tags[tagId].name) }
+                    data-toggle='tooltip' 
+                    title='REMOVE TAG'
+                    onClick={ this._untagNote(note.id, note.tags[tagId].name, tagId) }
                     className='tag-name'>
                   <span>{ note.tags[tagId].name }</span>
                 </li>
@@ -120,6 +153,7 @@ class TextEditor extends React.Component {
 
           <input type="text"
                  id='newTag'
+                 onKeyUp={ this._tagNote }
                  placeholder='Add tag...'/>
         </div>
       );
@@ -150,16 +184,15 @@ class TextEditor extends React.Component {
   }
 
   render() {
-    this.setListenerForTag(this.state);
-
+console.log(this.state);
     return (
       <div className='text-editor'>
         <div className='editor-nav'>
           <input autoFocus
-                className='title'
-                value={ this.state.title }
-                onChange={ this.update('title') }
-                placeholder='Title your note...'/>
+                 className='title'
+                 value={ this.state.title }
+                 onChange={ this.update('title') }
+                 placeholder='Title your note...'/>
 
           { this.renderButton() }
         </div>
