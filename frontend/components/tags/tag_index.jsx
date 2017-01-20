@@ -54,10 +54,10 @@ class TagIndex extends React.Component {
                   <TagIndexItem tag={ tag }
                                 notes={ notes[tag.id] || 0 } />
 
-                <img src="https://www.dropbox.com/s/lmvyu800cif6lk8/1484607671_trash_bin.png?raw=1" 
-                      alt="trash_can"
-                      className='trash-can'
-                      onClick={ this.deleteTag(tag) }/>
+                <img className='trash-can'
+                     alt="trash_can"
+                     onClick={ this.deleteTag(tag) }
+                     src="http://res.cloudinary.com/safenotes/image/upload/v1484796892/1484607671_trash_bin_n1hdry.png"/>
 
                 </div>
               ))}
