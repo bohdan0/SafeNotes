@@ -1,4 +1,5 @@
 import { hashHistory } from 'react-router';
+import ReactTooltip from 'react-tooltip';
 import ReactQuill from 'react-quill';
 import merge from 'lodash/merge';
 import React from 'react';
@@ -141,13 +142,20 @@ class TextEditor extends React.Component {
           
           <ul className='option-list'>
             { tagIds.map(tagId => (
-                <li key={ tagId }
-                    data-toggle='tooltip' 
-                    title='REMOVE TAG'
-                    onClick={ this._untagNote(note.id, note.tags[tagId].name, tagId) }
-                    className='tag-name'>
+              <div key={ tagId }>
+                <li onClick={ this._untagNote(note.id, note.tags[tagId].name, tagId) }
+                    className='tag-name'
+                    data-tip='React-tooltip'>
                   <span>{ note.tags[tagId].name }</span>
                 </li>
+
+                <ReactTooltip place='top' 
+                              type='dark' 
+                              effect='solid'>
+                  <span>REMOVE</span>
+                </ReactTooltip>
+
+              </div>
             ))}
           </ul>
 
