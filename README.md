@@ -1,10 +1,10 @@
 # SafeNotes 
 
-## Take a note on [SafeNotes](https://safenotes.herokuapp.com "SafeNotes")
+## Take a note on [SafeNotes](http://www.safenotes.io/ "SafeNotes")
 
 ![screenshot](http://res.cloudinary.com/safenotes/image/upload/v1484940592/Screen_Shot_2017-01-20_at_11.28.20_AM_p3o0bd.png "main_page")
 
-[SafeNotes](https://safenotes.herokuapp.com "SafeNotes") is web application inspired by Evernote. It is built with Ruby on Rails backend, PostgreSQL database and React.js frontend framework with Redux architecture.
+[SafeNotes](http://www.safenotes.io/ "SafeNotes") is web application inspired by Evernote. It is built with Ruby on Rails backend, PostgreSQL database and React.js frontend framework with Redux architecture.
 
 ## Features
 
