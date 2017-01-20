@@ -18,7 +18,7 @@ const NotebookHeader = () => {
                     type='dark' 
                     effect='solid'
                     offset={ { right: 10 } }>
-        <span>NEW TAG</span>
+        <span>NEW NOTEBOOK</span>
       </ReactTooltip>
     </div>
   );
