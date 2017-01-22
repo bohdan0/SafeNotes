@@ -7,7 +7,7 @@ const Sidebar = ({ logout }) => (
     <div className='sidebar'>
       <div className='sidebar-top'>
         <img alt="Logo"
-             src="http://res.cloudinary.com/safenotes/image/upload/v1484796892/1484384030_Vector-icons_39_zzk1ov.png"
+             src="http://res.cloudinary.com/safenotes/image/upload/v1485069188/16237507_10206188397148119_1966603325_n_te958y.png"
              className="logo"/>
 
         <Link to='/home/new/note'>

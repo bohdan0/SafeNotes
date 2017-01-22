@@ -65,7 +65,7 @@ class AuthForm extends React.Component {
       <div className='auth-form'>
 
         <figure className='auth-form-top'>
-          <img src="http://res.cloudinary.com/safenotes/image/upload/v1484796892/1484384030_Vector-icons_39_zzk1ov.png"
+          <img src="http://res.cloudinary.com/safenotes/image/upload/v1485069188/16237507_10206188397148119_1966603325_n_te958y.png"
                alt="Logo" />
 
           <h3>{ text }</h3>
