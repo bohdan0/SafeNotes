@@ -56,6 +56,7 @@ class NoteIndex extends React.Component {
             {sortedNotes.map(note => (
               <NoteIndexItem note={ note } 
                              key={ note.id }
+                             current={ currentNote === note }
                              handleClick={ this.updateCurrentNote }
                              deleteNote={ this.props.deleteNote }/>
             ))}

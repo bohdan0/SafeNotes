@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-const NoteIndexItem = ({ note, handleClick, deleteNote }) => {
+const NoteIndexItem = ({ note, handleClick, deleteNote, current }) => {
   const body = document.createElement('p');
   body.innerHTML = note.body;
 
@@ -14,7 +14,7 @@ const NoteIndexItem = ({ note, handleClick, deleteNote }) => {
   };
 
   return (
-    <div className='note-item'
+    <div className={ current ? 'note-item current' : 'note-item' }
          onClick={ action }>
       <div className='note-item-info'>
         <h1>{ note.title }</h1>
