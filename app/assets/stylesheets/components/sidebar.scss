@@ -59,6 +59,17 @@
     transform: scale(1);
     box-shadow: 0 0 1.5px 1.5px #1A9446;
   }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    .sidebar-btn {
+      margin: 10px;
+    }
+  }
 }
 
 .index {

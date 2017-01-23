@@ -80,19 +80,33 @@ const Sidebar = ({ logout }) => (
         </li>
       </ul>
 
-      <img className='sidebar-btn side-logout'
-           data-tip='React-tooltip'
-           data-for='logout'
-           onClick={ logout }
-           alt="log_out"
-           src="http://res.cloudinary.com/safenotes/image/upload/v1484796893/circular-power-on-button_xpm2sy.png"/>
+      <footer>
+        <a href="https://www.linkedin.com/in/bohdan0"
+            className='sidebar-btn'>
+          <img alt="linkedin-logo"
+                src="http://res.cloudinary.com/safenotes/image/upload/v1485160198/linkedin-black_hiyvng.png"/>
+        </a>
 
-      <ReactTooltip id='logout' 
-                    place='right' 
-                    type='dark' 
-                    effect='solid'>
-        <span>LOG OUT</span>
-      </ReactTooltip>
+        <a href="https://github.com/bohdan0/SafeNotes"
+            className='sidebar-btn'>
+          <img alt="github-logo"
+               src="http://res.cloudinary.com/safenotes/image/upload/v1485159840/github-black_xqco7q.png"/>
+        </a>
+
+        <img className='sidebar-btn side-logout'
+            data-tip='React-tooltip'
+            data-for='logout'
+            onClick={ logout }
+            alt="log_out"
+            src="http://res.cloudinary.com/safenotes/image/upload/v1484796893/circular-power-on-button_xpm2sy.png"/>
+
+        <ReactTooltip id='logout' 
+                      place='right' 
+                      type='dark' 
+                      effect='solid'>
+          <span>LOG OUT</span>
+        </ReactTooltip>
+      </footer>
     </div>
   </div>
 );
