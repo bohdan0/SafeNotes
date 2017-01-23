@@ -58,7 +58,7 @@ class AuthForm extends React.Component {
   render() {
     const text = this.props.formType === 'signup' ? 'Create Account' : 'Sign In';
     const firstWord = text === 'Sign In' ? 'Don\'t' : 'Already';
-    const oppositeText = text === 'Sign In' ? 'Create Account' : 'Sign In';
+    const oppositeText = text === 'Sign In' ? 'Sign Up' : 'Sign In';
     const oppositeForm = text === 'Sign In' ? 'signup' : 'login';
 
     return (
@@ -68,7 +68,7 @@ class AuthForm extends React.Component {
           <img src="http://res.cloudinary.com/safenotes/image/upload/v1485069188/16237507_10206188397148119_1966603325_n_te958y.png"
                alt="Logo" />
 
-          <h3>{ text }</h3>
+          <h3>Safe Notes</h3>
         </figure>
 
         <div className='auth-form-main'>
@@ -77,6 +77,7 @@ class AuthForm extends React.Component {
           <form onSubmit={ this.handleSubmit }>
 
             <input type="text"
+                   autoFocus
                    className='auth-form-input'
                    value={ this.state.username }
                    placeholder='Username'
