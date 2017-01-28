@@ -85,6 +85,12 @@
   padding: 9px 17px;
 }
 
+.current:hover {
+  border: none;
+  border-top: 1px solid #ececec;
+  padding: 12px 20px;
+}
+
 .note-item:hover {
   background: #2dbe60;
   cursor: pointer;
