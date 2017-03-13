@@ -1,12 +1,11 @@
 class Api::NotesController < ApplicationController
   def index
     if params[:note]
-      @notes = Note.all
-        .where(author: current_user)
-        .where(notebook_id: note_params[:notebook_id])
+      @notes = Note
+        .where(author: current_user, notebook_id: note_params[:notebook_id])
         .includes(:tags)
     else
-      @notes = Note.all
+      @notes = Note
         .where(author: current_user)
         .includes(:tags)
     end

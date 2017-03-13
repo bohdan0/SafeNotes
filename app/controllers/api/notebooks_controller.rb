@@ -1,7 +1,6 @@
 class Api::NotebooksController < ApplicationController
   def index
-    @notebooks = Notebook.all
-      .where(author: current_user)
+    @notebooks = Notebook.where(author: current_user)
 
     render :index
   end

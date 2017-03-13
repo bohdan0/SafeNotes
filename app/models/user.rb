@@ -45,8 +45,12 @@ class User < ApplicationRecord
 
   def first_set_up
     if username != 'Guest'
-      notebook = Notebook.create(title: 'My first notebook', author: self)
-      Note.create(title: 'My first note', author: self, notebook: notebook, body: 'Your note goes here')
+      notebook = Notebook.create(title: 'My first notebook',
+                                 author: self)
+      Note.create(title: 'My first note',
+                  author: self,
+                  notebook: notebook,
+                  body: 'Your note goes here')
     end
   end
 end
