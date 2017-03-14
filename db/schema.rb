@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20170118044107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "author_id",  null: false
+    t.index ["author_id", "name"], name: "index_tags_on_author_id_and_name", unique: true, using: :btree
     t.index ["author_id"], name: "index_tags_on_author_id", using: :btree
-    t.index ["name", "author_id"], name: "index_tags_on_name_and_author_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

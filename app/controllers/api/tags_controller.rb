@@ -7,8 +7,7 @@ class Api::TagsController < ApplicationController
   end
 
   def create
-    @tag = Tag.find_by_name(params[:tag_name]) ||
-      Tag.create(name: params[:tag_name], author: current_user)
+    @tag = Tag.find_or_create_by(name: params[:tag_name], author: current_user)
 
     if params[:note_id]
       tagging = Tagging.new(tag: @tag, note_id: params[:note_id])

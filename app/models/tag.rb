@@ -1,5 +1,7 @@
 class Tag < ApplicationRecord
   validates :name, :author, presence: true
+  validates :author, uniqueness: { scope: :name,
+    message: 'Tag already exists' }
 
   belongs_to :author,
     class_name: :User,
