@@ -24,6 +24,17 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64(128)
   end
 
+  def self.reset_guest(key)
+    guest = User.find_by_username('Guest')
+
+    if guest && guest.password?(key)
+      Rails.application.load_seed
+      guest
+    else
+      nil
+    end
+  end
+
   def ensure_session_token
     self.session_token ||= User.generate_session_token
   end

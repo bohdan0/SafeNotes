@@ -6,13 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.destroy_all
-Notebook.destroy_all
-Note.destroy_all
-Tag.destroy_all
-Tagging.destroy_all
-
-guest = User.create(username: 'Guest', password: 'password')
+guest = User.find_by_username('Guest') || User.create(username: 'Guest', password: 'password')
+guest.notebooks.destroy_all # destroys notes too
+guest.tags.destroy_all # destroys taggings too
 
 school = Notebook.create(title: "school", author: guest)
 

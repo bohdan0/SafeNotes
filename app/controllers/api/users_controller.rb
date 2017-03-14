@@ -12,6 +12,18 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    # For reseting guest profile
+    key = params[:id]
+    user = User.reset_guest(key)
+
+    if user
+      render json: ['Guest was reset'], status: 200
+    else
+      render json: ['Not valid key'], status: 404
+    end
+  end
+
   private
 
   def user_params
