@@ -1,3 +1,4 @@
+import Loading from 'react-loading-animation';
 import { hashHistory } from 'react-router';
 import ReactTooltip from 'react-tooltip';
 import ReactQuill from 'react-quill';
@@ -7,6 +8,7 @@ import React from 'react';
 class TextEditor extends React.Component {
   constructor(props) {
     super(props);
+    this.status = props.note ? true : false; // true => saved, false => saving
     this.state = props.note || { id: null, 
                                  title: '', 
                                  body: '',
@@ -29,15 +31,22 @@ class TextEditor extends React.Component {
   autosave() {
     clearTimeout(this.timeout);
     const newNote = this.state;
+    this.status = false;
     
     if (newNote.id) {
-      this.timeout = setTimeout(() => this.props.updateNote(newNote), 500);
+      this.timeout = setTimeout(() => {
+        this.props.updateNote(newNote);
+        this.status = true;
+      }, 500);
     } else if (newNote.body.length > 0 && newNote.title.length > 0 && newNote.notebook_id) {
-      this.timeout = setTimeout(() => this.props.createNote(newNote)
-        .then(res => {
-          const { id, title, body, notebook_id } = res.note;
-          this.setState({ id, title, body, notebook_id });
-        }), 500);
+      this.timeout = setTimeout(() => {
+        this.props.createNote(newNote)
+          .then(res => {
+            const { id, title, body, notebook_id } = res.note;
+            this.setState({ id, title, body, notebook_id });
+          });
+        this.status = true;
+      }, 500);
     }
   }
 
@@ -76,6 +85,14 @@ class TextEditor extends React.Component {
             .fail(err => console.log(err.responseJSON));
         }
       }
+  }
+
+  renderStatus() {
+    return (
+      <div className='status-indicator'>
+        { this.status ? <i className="fa fa-check-circle-o" aria-hidden="true"></i> : <Loading /> }
+      </div>
+    );
   }
 
   renderButton() {
@@ -192,7 +209,6 @@ class TextEditor extends React.Component {
   }
 
   render() {
-
     return (
       <div className='text-editor'>
         <div className='editor-nav'>
@@ -202,6 +218,7 @@ class TextEditor extends React.Component {
                  onChange={ this.update('title') }
                  placeholder='Title your note...'/>
 
+          { this.renderStatus() }
           { this.renderButton() }
         </div>
 
