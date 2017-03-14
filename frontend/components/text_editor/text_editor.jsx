@@ -169,7 +169,7 @@ class TextEditor extends React.Component {
                 <ReactTooltip place='top' 
                               type='dark' 
                               effect='solid'>
-                  <span>REMOVE</span>
+                  <span>REMOVE TAG</span>
                 </ReactTooltip>
 
               </div>
@@ -179,7 +179,16 @@ class TextEditor extends React.Component {
           <input type="text"
                  id='newTag'
                  onKeyUp={ this._tagNote }
-                 placeholder='Add tag...'/>
+                 placeholder='Add tag...'
+                 data-tip='React-tooltip'
+                 data-for='new-tag'/>
+
+          <ReactTooltip place='top' 
+                        type='dark' 
+                        effect='solid'
+                        id='new-tag'>
+            <span>TAG NOTE</span>
+          </ReactTooltip>
         </div>
       );
     }
@@ -187,6 +196,7 @@ class TextEditor extends React.Component {
 
   chooseNotebook() {
     const notebooks = this.props.notebooks;
+    const verb = this.state.notebook_id ? 'Change' : 'Choose';
 
     if (notebooks) {
       return (
@@ -194,8 +204,10 @@ class TextEditor extends React.Component {
           <select className='editor-notebooks ql-picker'
                   ref='notebookId'
                   value={ this.state.notebook_id || undefined }
-                  onChange={ this.update('notebook_id') }>
-              { this.state.notebook_id ? '' : <option value='undefined'>Choose Notebook</option> }
+                  onChange={ this.update('notebook_id') }
+                  data-tip='React-tooltip'
+                  data-for='change-notebook'>
+              { this.state.notebook_id ? <option disabled>{ verb } Notebook</option> : <option value='undefined'>{ verb } Notebook</option> }
             {Object.keys(notebooks).map(notebookId => (
               <option value={ notebookId }
                       key={ notebookId }>
@@ -203,6 +215,13 @@ class TextEditor extends React.Component {
               </option>
             ))}
           </select>
+
+          <ReactTooltip place='top' 
+                        type='dark' 
+                        effect='solid'
+                        id='change-notebook'>
+            <span>{ verb.toUpperCase() } NOTEBOOK</span>
+          </ReactTooltip>
         </div>
       );
     }
